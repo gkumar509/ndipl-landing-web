@@ -1,0 +1,429 @@
+{
+  "brand": {
+    "shortName": "NDIPL",
+    "fullName": "NATURES DELIGHT INDUSTRIES",
+    "legalName": "Natures Delight Industries Private Limited",
+    "homeAria": "NDIPL — home"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About us",
+    "team": "Team",
+    "products": "Products",
+    "careers": "Careers",
+    "contact": "Contact",
+    "menu": "MENU",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "LANGUAGE",
+    "changeLanguage": "Change language",
+    "requestQuote": "Request a quote"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "eyebrow": "Error 404",
+    "heading": "This lot didn't make it to the container.",
+    "body": "The page you were looking for was moved, renamed, or never existed. We can trace every consignment we ship — this URL isn't one of them.",
+    "traceLabel": "TRACE ATTEMPT",
+    "pathLabel": "REQUESTED PATH",
+    "statusLabel": "STATUS",
+    "status": "NOT FOUND",
+    "stagesLabel": "STAGES CHECKED",
+    "stages": "Sourcing · Cleaning · Grading · Destoning · Colour sorting · Packing",
+    "home": "Back to home",
+    "contact": "Talk to our team",
+    "suggestionsEyebrow": "Where to next",
+    "suggestions": {
+      "products": "Pulses, spices, grains, millets, oil seeds and dehydrated produce.",
+      "team": "The agronomists, quality specialists and export hands behind each lot.",
+      "contact": "Tell our export desk what you need and by when."
+    }
+  },
+  "home": {
+    "metaDescription": "India-based manufacturer, merchant exporter and global sourcing partner for premium-quality agro products — pulses, spices, grains, millets, oil seeds and dehydrated produce.",
+    "hero": {
+      "badge": "Manufacturer · Exporter · Sourcing partner",
+      "title": "Premium agro products, sourced and processed with a conscience.",
+      "subtitle": "We source from carefully selected farming regions across India and process through advanced cleaning, grading, destoning, colour sorting and hygienic packaging to ensure superior purity and quality.",
+      "exploreProducts": "Explore products",
+      "talkToTeam": "Talk to sourcing team",
+      "stats": [
+        {
+          "value": "18+",
+          "label": "Export destinations"
+        },
+        {
+          "value": "40+",
+          "label": "Product lines"
+        },
+        {
+          "value": "100%",
+          "label": "Lot-wise lab testing"
+        }
+      ],
+      "collage": {
+        "heroShot": "farm / harvest hero shot — 1600×900",
+        "sorterShot": "color sorter line",
+        "cardTitle": "Lab-tested, batch-traceable",
+        "cardNote": "EVERY CONSIGNMENT"
+      }
+    },
+    "pillars": {
+      "eyebrow": "What we stand for",
+      "items": [
+        {
+          "title": "Safe food",
+          "description": "Residue and contaminant testing on every lot, with hygienic handling from intake to sealed pack."
+        },
+        {
+          "title": "Sustainable farming",
+          "description": "Long-term buying relationships with farmer groups, good-practice training and fair, transparent pricing."
+        },
+        {
+          "title": "Soil & water conservation",
+          "description": "Watershed work, crop rotation guidance and irrigation efficiency programmes in our sourcing belts."
+        }
+      ]
+    },
+    "categories": {
+      "eyebrow": "Product range",
+      "heading": "{count} categories, one standard of purity",
+      "allProducts": "All products →",
+      "imageAlt": "{category} shot"
+    },
+    "process": {
+      "eyebrow": "From farm gate to container",
+      "heading": "A six-stage processing discipline",
+      "stages": [
+        {
+          "number": "01",
+          "title": "Sourcing",
+          "description": "Selected regions, mapped farmer groups, lot-level intake records."
+        },
+        {
+          "number": "02",
+          "title": "Cleaning",
+          "description": "De-dusting and impurity removal on multi-deck cleaners."
+        },
+        {
+          "number": "03",
+          "title": "Grading",
+          "description": "Size and density grading to the buyer's declared spec."
+        },
+        {
+          "number": "04",
+          "title": "Destoning",
+          "description": "Gravity separation of stones, mud balls and heavy foreign matter."
+        },
+        {
+          "number": "05",
+          "title": "Colour sorting",
+          "description": "Optical sorters remove discoloured and defective grains."
+        },
+        {
+          "number": "06",
+          "title": "Packing",
+          "description": "Hygienic packing, stitching, batch coding and stuffing supervision."
+        }
+      ]
+    },
+    "compliance": {
+      "eyebrow": "Compliance",
+      "heading": "Certificates, test reports & partnerships",
+      "body": "Registrations, third-party lab reports and buyer audits are available on request for every shipment.",
+      "cta": "Request documentation",
+      "certifications": [
+        {
+          "name": "FSSAI",
+          "description": "Food business licence"
+        },
+        {
+          "name": "APEDA",
+          "description": "Registered exporter"
+        },
+        {
+          "name": "ISO 22000",
+          "description": "Food safety management"
+        },
+        {
+          "name": "HACCP",
+          "description": "Hazard control plan"
+        },
+        {
+          "name": "Spices Board",
+          "description": "Registration"
+        },
+        {
+          "name": "IEC & GST",
+          "description": "Import-export code"
+        },
+        {
+          "name": "Lab reports",
+          "description": "Pesticide residue, aflatoxin"
+        },
+        {
+          "name": "NPOP organic",
+          "description": "Select lines"
+        }
+      ],
+      "partnersEyebrow": "Trusted collaborations",
+      "partners": [
+        "logo — testing lab",
+        "logo — farmer producer org",
+        "logo — logistics partner",
+        "logo — trade body",
+        "logo — packaging partner",
+        "logo — buyer group"
+      ]
+    },
+    "testimonial": {
+      "quote": "“Consistent grading, clean documentation and shipments that land exactly as specified.”",
+      "attribution": "Buyer testimonial",
+      "detail": "Importer, Gulf region — name on approval"
+    },
+    "exportDesk": {
+      "eyebrow": "Export desk",
+      "heading": "Send us your specification",
+      "emailPlaceholder": "Work email",
+      "productPlaceholder": "Product & quantity (MT)",
+      "cta": "Get a quote in 24 hours"
+    }
+  },
+  "about": {
+    "title": "About us",
+    "metaDescription": "Natures Delight Industries Private Limited is a trusted India-based manufacturer, merchant exporter, supplier and global sourcing partner specializing in premium-quality agro products.",
+    "eyebrow": "About us",
+    "heading": "Safe food, sustainable farming, and the soil and water it depends on",
+    "intro": "Natures Delight Industries Private Limited is a trusted India-based manufacturer, merchant exporter, supplier and global sourcing partner specializing in premium-quality agro products.",
+    "imageLabel": "facility / farmer-partner wide shot — 2000×900",
+    "blocks": [
+      {
+        "kicker": "WHO WE ARE",
+        "title": "A processor and exporter, not a middleman",
+        "description": "We own the steps that decide quality — intake, cleaning, grading and packing — so specification and price stay accountable to one team."
+      },
+      {
+        "kicker": "WHAT WE PROMISE",
+        "title": "Purity you can verify",
+        "description": "Every consignment ships with grading data and third-party test reports, and pre-shipment samples are matched against approved standards."
+      },
+      {
+        "kicker": "WHY IT MATTERS",
+        "title": "Farming that can continue",
+        "description": "Safe food depends on healthy soil and available water. Our sourcing programmes are built to keep both intact in the belts we buy from."
+      }
+    ],
+    "valuesHeading": "How we work",
+    "values": [
+      {
+        "title": "Traceable lots",
+        "description": "Batch codes link a pack back to region, farmer group and intake date."
+      },
+      {
+        "title": "Specification first",
+        "description": "We quote against a written spec, then hold ourselves to it."
+      },
+      {
+        "title": "Documentation on time",
+        "description": "Export papers prepared alongside production, not after it."
+      },
+      {
+        "title": "Long relationships",
+        "description": "Repeat buying seasons with the same farmer groups."
+      }
+    ],
+    "stats": [
+      {
+        "value": "2019",
+        "label": "Incorporated"
+      },
+      {
+        "value": "9",
+        "label": "Sourcing regions"
+      },
+      {
+        "value": "6",
+        "label": "Processing stages"
+      },
+      {
+        "value": "24 hrs",
+        "label": "Quotation turnaround"
+      }
+    ]
+  },
+  "team": {
+    "title": "Team",
+    "metaDescription": "Agronomists, quality specialists and export hands — the people behind every NDIPL consignment.",
+    "eyebrow": "Our team",
+    "heading": "Agronomists, quality specialists and export hands",
+    "intro": "Photographs, profiles and areas of expertise for the people behind every consignment.",
+    "departments": "Departments",
+    "portraitAlt": "portrait 4:5 — {name}"
+  },
+  "products": {
+    "title": "Products",
+    "metaDescription": "Premium agro products — pulses, spices, grains, millets, oil seeds and dehydrated produce, cleaned and graded to buyer specification.",
+    "eyebrow": "Products",
+    "heading": "Premium agro products, cleaned and graded to buyer spec",
+    "all": "All",
+    "enquire": "Enquire",
+    "customHeading": "Need a private-label or custom pack size?",
+    "customBody": "From 1 kg retail pouches to 50 kg PP bags and bulk containers.",
+    "requestSamples": "Request samples",
+    "downloadCatalogue": "Download catalogue"
+  },
+  "careers": {
+    "title": "Careers",
+    "metaDescription": "Roles across quality, agronomy, plant operations and export documentation at NDIPL, plus a volunteering track for our farm and conservation programmes.",
+    "eyebrow": "Careers",
+    "heading": "Work on food that people can trust",
+    "intro": "Roles across quality, agronomy, plant operations and export documentation — plus a volunteering track for anyone who wants to contribute to our farm and conservation programmes.",
+    "apply": "Apply",
+    "applySubject": "Application — {role}",
+    "filters": [
+      "All departments",
+      "Quality",
+      "Operations",
+      "Agronomy",
+      "Export & sales"
+    ],
+    "jobs": [
+      {
+        "title": "Quality Assurance Officer",
+        "meta": "Quality · Nagpur plant · 2–5 years",
+        "type": "Full-time"
+      },
+      {
+        "title": "Export Documentation Executive",
+        "meta": "Export & sales · Nagpur · 1–3 years",
+        "type": "Full-time"
+      },
+      {
+        "title": "Procurement Manager — Pulses",
+        "meta": "Sourcing · Madhya Pradesh & Maharashtra · 5+ years",
+        "type": "Full-time"
+      },
+      {
+        "title": "Agronomist — Farmer Outreach",
+        "meta": "Agronomy · Field-based · 3+ years",
+        "type": "Full-time"
+      },
+      {
+        "title": "Plant Operations Supervisor",
+        "meta": "Operations · Nagpur plant · Shift role",
+        "type": "Full-time"
+      },
+      {
+        "title": "Sales Executive — Middle East",
+        "meta": "Export & sales · Remote with travel",
+        "type": "Contract"
+      }
+    ],
+    "volunteerEyebrow": "Volunteer",
+    "volunteerHeading": "Give time to soil, water and safe-food programmes",
+    "volunteerBody": "Field days with farmer groups, watershed and plantation drives, food-safety awareness sessions in schools and mandis.",
+    "volunteerCta": "Join as a volunteer",
+    "volunteerSubject": "Volunteering",
+    "volunteerTracks": [
+      {
+        "title": "Field days",
+        "description": "Support farmer training sessions and demo plots."
+      },
+      {
+        "title": "Watershed & plantation drives",
+        "description": "Weekend programmes in sourcing belts."
+      },
+      {
+        "title": "Safe-food awareness",
+        "description": "Sessions in schools, mandis and community centres."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "metaDescription": "Quotations within one working day. Tell the NDIPL export desk what you need and by when.",
+    "eyebrow": "Contact",
+    "heading": "Tell us what you need and by when",
+    "intro": "Quotations within one working day. Samples dispatched against courier account for confirmed enquiries.",
+    "mapLabel": "map embed — plant & office location",
+    "info": [
+      {
+        "label": "EXPORT DESK",
+        "value": "export@ndipl.example · +91 00000 00000"
+      },
+      {
+        "label": "PLANT & OFFICE",
+        "value": "Processing unit address, Nagpur, Maharashtra, India"
+      },
+      {
+        "label": "HOURS",
+        "value": "Mon–Sat, 09:30–18:30 IST"
+      }
+    ]
+  },
+  "form": {
+    "heading": "Enquiry form",
+    "name": "Full name",
+    "namePlaceholder": "Your name",
+    "company": "Company",
+    "companyPlaceholder": "Company name",
+    "email": "Work email",
+    "emailPlaceholder": "name@company.com",
+    "country": "Country",
+    "countryPlaceholder": "Select country",
+    "interest": "Interest",
+    "interestPlaceholder": "Product enquiry",
+    "quantity": "Quantity",
+    "quantityPlaceholder": "In metric tonnes",
+    "message": "Message",
+    "messagePlaceholder": "Product, grade, quantity, packing and destination port",
+    "catalogue": "Send me the product catalogue and certification pack",
+    "submit": "Submit enquiry",
+    "submitting": "Sending…",
+    "enquirySubject": "Enquiry: {subject}",
+    "recaptchaNotice": "Protected by reCAPTCHA — the Google <privacy>Privacy Policy</privacy> and <terms>Terms of Service</terms> apply.",
+    "success": "Thanks — your enquiry is with our export desk. We reply within one working day.",
+    "genericError": "Your enquiry could not be sent. Please try again.",
+    "interests": {
+      "product": "Product enquiry",
+      "sample": "Sample request",
+      "privateLabel": "Private label / custom packing",
+      "documentation": "Documentation & certificates",
+      "careers": "Careers",
+      "volunteering": "Volunteering",
+      "other": "Other"
+    },
+    "errors": {
+      "name": "Please enter your name",
+      "email": "Please enter a valid work email",
+      "country": "Please select a country",
+      "interest": "Please select an interest",
+      "message": "Please add a few more details",
+      "tooLong": "This is too long",
+      "invalid": "Invalid value"
+    }
+  },
+  "footer": {
+    "tagline": "Natures Delight Industries Private Limited — promoting safe food, sustainable farming and soil & water conservation.",
+    "copyright": "© {year} Natures Delight Industries Private Limited",
+    "columns": {
+      "company": "COMPANY",
+      "products": "PRODUCTS",
+      "contact": "CONTACT"
+    },
+    "links": {
+      "about": "About us",
+      "team": "Our team",
+      "certifications": "Certifications",
+      "careers": "Careers",
+      "pulses": "Pulses & lentils",
+      "spices": "Spices",
+      "grains": "Grains & millets",
+      "oilSeeds": "Oil seeds",
+      "requestQuote": "Request a quote",
+      "sampleRequest": "Sample request",
+      "volunteer": "Volunteer with us",
+      "email": "export@ndipl.example"
+    }
+  }
+}
