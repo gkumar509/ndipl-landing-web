@@ -8,6 +8,7 @@ import {
   ImagePlaceholder,
   Section,
 } from "@/components/common/section";
+import Image from "next/image";
 
 type Block = { kicker: string; title: string; description: string };
 type Value = { title: string; description: string };
@@ -34,15 +35,18 @@ export default function AboutPage() {
         >
           {t("heading")}
         </DisplayHeading>
-        <p className="text-body mt-5 max-w-[62ch] text-[17px] leading-[1.65]">
+        <p className="text-body mt-5 text-[17px] leading-[1.65]">
           {t("intro")}
         </p>
       </Section>
 
-      <Section containerClassName="pt-[30px]">
-        <ImagePlaceholder
-          label={t("imageLabel")}
-          className="h-[300px] rounded-[20px] p-[18px]"
+      <Section containerClassName="w-full h-[300px] rounded-[20px] overflow-hidden">
+        <Image
+          src="/2.png"
+          alt="NDIPL background"
+          width={1000}
+          height={400}
+          className="w-full h-full object-cover rounded-[20px]"
         />
       </Section>
 

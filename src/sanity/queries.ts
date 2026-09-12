@@ -11,10 +11,16 @@ const IMAGE_FRAGMENT = /* groq */ `
 /**
  * Fields are internationalized arrays, so every text projection picks the
  * requested locale and falls back to English when a translation is missing.
+ *
+ * Entries carry the locale either as the array `_key` (what `scripts/seed.ts`
+ * writes) or in a `language` field with a random `_key` (what the Studio
+ * writes), so both spellings have to be matched or the field reads as null.
  */
 const localized = (field: string) => /* groq */ `
   "${field}": coalesce(
+    ${field}[language == $locale][0].value,
     ${field}[_key == $locale][0].value,
+    ${field}[language == "en"][0].value,
     ${field}[_key == "en"][0].value
   )
 `;

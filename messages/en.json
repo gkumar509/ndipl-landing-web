@@ -8,7 +8,9 @@
   "nav": {
     "home": "Home",
     "about": "About us",
+    "background": "Background",
     "team": "Team",
+    "ourWork": "Our work",
     "products": "Products",
     "careers": "Careers",
     "contact": "Contact",
@@ -42,7 +44,7 @@
   "home": {
     "metaDescription": "India-based manufacturer, merchant exporter and global sourcing partner for premium-quality agro products — pulses, spices, grains, millets, oil seeds and dehydrated produce.",
     "hero": {
-      "badge": "Manufacturer · Exporter · Sourcing partner",
+      "badge": "Safe Food · Sustainable Farming · Global Standards",
       "title": "Premium agro products, sourced and processed with a conscience.",
       "subtitle": "We source from carefully selected farming regions across India and process through advanced cleaning, grading, destoning, colour sorting and hygienic packaging to ensure superior purity and quality.",
       "exploreProducts": "Explore products",
@@ -62,7 +64,7 @@
         }
       ],
       "collage": {
-        "heroShot": "farm / harvest hero shot — 1600×900",
+        "heroShot": "farm / harvest hero shot — 1600x900",
         "sorterShot": "color sorter line",
         "cardTitle": "Lab-tested, batch-traceable",
         "cardNote": "EVERY CONSIGNMENT"
@@ -93,37 +95,32 @@
     },
     "process": {
       "eyebrow": "From farm gate to container",
-      "heading": "A six-stage processing discipline",
+      "heading": "A five-stage processing discipline",
       "stages": [
         {
           "number": "01",
           "title": "Sourcing",
-          "description": "Selected regions, mapped farmer groups, lot-level intake records."
+          "description": "Selected regions, geo-tagged farmer groups, lot-level intake records."
         },
         {
           "number": "02",
-          "title": "Cleaning",
-          "description": "De-dusting and impurity removal on multi-deck cleaners."
+          "title": "Quality Testing",
+          "description": "Moisture, purity and defect checks on every lot before it clears intake."
         },
         {
           "number": "03",
-          "title": "Grading",
-          "description": "Size and density grading to the buyer's declared spec."
+          "title": "Traceability",
+          "description": "Each lot carries its farm, batch and processing record from intake to container."
         },
         {
           "number": "04",
-          "title": "Destoning",
-          "description": "Gravity separation of stones, mud balls and heavy foreign matter."
+          "title": "Certifications",
+          "description": "Third-party lab reports and certificates issued to the buyer's destination requirements."
         },
         {
           "number": "05",
-          "title": "Colour sorting",
-          "description": "Optical sorters remove discoloured and defective grains."
-        },
-        {
-          "number": "06",
-          "title": "Packing",
-          "description": "Hygienic packing, stitching, batch coding and stuffing supervision."
+          "title": "Shipment",
+          "description": "Buyer-spec packing, container stuffing and full export documentation."
         }
       ]
     },
@@ -194,8 +191,7 @@
     "metaDescription": "Natures Delight Industries Private Limited is a trusted India-based manufacturer, merchant exporter, supplier and global sourcing partner specializing in premium-quality agro products.",
     "eyebrow": "About us",
     "heading": "Safe food, sustainable farming, and the soil and water it depends on",
-    "intro": "Natures Delight Industries Private Limited is a trusted India-based manufacturer, merchant exporter, supplier and global sourcing partner specializing in premium-quality agro products.",
-    "imageLabel": "facility / farmer-partner wide shot — 2000×900",
+    "intro": "Rooted in Indian Soil. Nurtured by Tradition. Connected to the World. At Nature Delight Industries Private Limited (NDIPL), our story is deeply rooted in the fertile heartland of Bhopal, Madhya Pradesh. We do not view ourselves merely as agricultural suppliers or exporters—we see ourselves as caretakers of the land, bridge-builders connecting dedicated Indian farmers to global kitchens, and passionate believers in a healthier, cleaner world. Our guiding philosophy is straightforward, honest, and non-negotiable: \"Safe Food, Sustainable Farming, and Soil & Water Conservation.\" Real quality cannot be created in a laboratory or manufactured at the final hour. It begins long before the harvest ever takes place. It flourishes in the vitality of living soil, the purity of natural water sources, and the time-tested wisdom of the farming families who care for the fields. By standing shoulder-to-shoulder with smallholder growers, producer groups, and agricultural partners throughout India, we have built a transparent, ethical, and reliable farm-to-market family. Together, we bring wholesome, chemical-free produce directly from Indian soil to international tables.",
     "blocks": [
       {
         "kicker": "WHO WE ARE",
@@ -234,7 +230,7 @@
     ],
     "stats": [
       {
-        "value": "2019",
+        "value": "2025",
         "label": "Incorporated"
       },
       {
@@ -248,6 +244,75 @@
       {
         "value": "24 hrs",
         "label": "Quotation turnaround"
+      }
+    ]
+  },
+  "ourWork": {
+    "title": "Our work",
+    "metaDescription": "How Natures Delight Industries works: direct sourcing, farm and farmer registration, certified products, warehousing and supply chain management, and processing with value addition.",
+    "eyebrow": "Our work",
+    "heading": "From the registered farm to the stuffed container",
+    "intro": "We own every step that decides quality — who grows the crop, how it is certified, where it is stored and how it is processed — so specification, traceability and price stay accountable to one team.",
+    "areas": [
+      {
+        "number": "01",
+        "title": "Direct sourcing",
+        "description": "We buy from farmer groups and producer companies in the growing belts themselves, not through layers of traders. Every lot enters our records with the village, the season and the grower behind it.",
+        "points": [
+          "Procurement at village-level collection points across the sourcing belts",
+          "Lot codes that trace a consignment back to the farm it came from",
+          "A transparent, declared price to the grower with no undisclosed deductions",
+          "Buying against a crop plan agreed before sowing, so volume and grade are committed early"
+        ],
+        "imageLabel": "village collection point / procurement in progress — 1200×900"
+      },
+      {
+        "number": "02",
+        "title": "Farm / farmer registration",
+        "description": "Each supplying farm is registered before its first delivery. We record the holding, the crop plan and the inputs used, which is what makes residue compliance and traceability verifiable rather than promised.",
+        "points": [
+          "Farm profile with geo-location, area under crop and irrigation source",
+          "Grower records for seed, inputs and spray intervals through the season",
+          "Field visits and agronomy support from our team during the crop cycle",
+          "A registry refreshed every season, so the audit trail never goes stale"
+        ],
+        "imageLabel": "field registration with grower — 1200×900"
+      },
+      {
+        "number": "03",
+        "title": "Certified products",
+        "description": "Certification is handled lot by lot, not as a company-wide sticker. Consignments ship with the certificates and test reports the destination market actually asks for.",
+        "points": [
+          "FSSAI-licensed operations and APEDA-registered export",
+          "Organic lots under NPOP / NOP scope, segregated from conventional stock",
+          "Third-party residue and quality testing against buyer specification",
+          "A certificate and analysis pack issued with every consignment"
+        ],
+        "imageLabel": "certificate and analysis pack — 1200×900"
+      },
+      {
+        "number": "04",
+        "title": "Warehouse / supply chain management",
+        "description": "Between harvest and the container, produce sits in storage we control. Moisture, pest treatment and lot segregation are managed there, because that is where quality is usually lost.",
+        "points": [
+          "Covered, fumigated warehousing with lots kept physically separate",
+          "Moisture and infestation checks logged on a fixed schedule",
+          "Stock visibility from intake through dispatch against each order",
+          "Container stuffing, sealing and export documentation handled in house"
+        ],
+        "imageLabel": "warehouse bays and stacked lots — 1200x900"
+      },
+      {
+        "number": "05",
+        "title": "Processing and value additions",
+        "description": "Our processing line takes raw farm produce to the grade the buyer ordered — cleaned, sized, sorted and packed to the format their market needs.",
+        "points": [
+          "Cleaning, destoning, de-stemming and gravity separation",
+          "Grading, sieving and optical colour sorting to specification",
+          "Milling, splitting, polishing and dehydration where the product calls for it",
+          "Packing from retail pouches to bulk jute and PP bags, private label included"
+        ],
+        "imageLabel": "processing line / colour sorter and packing — 1200x900"
       }
     ]
   },
@@ -276,9 +341,11 @@
     "title": "Careers",
     "metaDescription": "Roles across quality, agronomy, plant operations and export documentation at NDIPL, plus a volunteering track for our farm and conservation programmes.",
     "eyebrow": "Careers",
+    "workWithUs": "Work with us",
     "heading": "Work on food that people can trust",
     "intro": "Roles across quality, agronomy, plant operations and export documentation — plus a volunteering track for anyone who wants to contribute to our farm and conservation programmes.",
     "apply": "Apply",
+    "openRolesCta": "See open roles",
     "applySubject": "Application — {role}",
     "filters": [
       "All departments",
@@ -290,12 +357,12 @@
     "jobs": [
       {
         "title": "Quality Assurance Officer",
-        "meta": "Quality · Nagpur plant · 2–5 years",
+        "meta": "Quality · Nagpur plant · 2-5 years",
         "type": "Full-time"
       },
       {
         "title": "Export Documentation Executive",
-        "meta": "Export & sales · Nagpur · 1–3 years",
+        "meta": "Export & sales · Nagpur · 1-3 years",
         "type": "Full-time"
       },
       {
@@ -349,15 +416,15 @@
     "info": [
       {
         "label": "EXPORT DESK",
-        "value": "export@ndipl.example · +91 00000 00000"
+        "value": "vedprakash@naturesdelightind.com · +91 86029 07233"
       },
       {
-        "label": "PLANT & OFFICE",
-        "value": "Processing unit address, Nagpur, Maharashtra, India"
+        "label": "OUR HOME",
+        "value": "Bhopal, Madhya Pradesh, India"
       },
       {
         "label": "HOURS",
-        "value": "Mon–Sat, 09:30–18:30 IST"
+        "value": "Mon-Fri, 09:00-18:00 IST"
       }
     ]
   },
@@ -413,12 +480,14 @@
     },
     "links": {
       "about": "About us",
+      "ourWork": "Our work",
       "team": "Our team",
-      "certifications": "Certifications",
       "careers": "Careers",
-      "pulses": "Pulses & lentils",
+      "products": "Products",
+      "pulses": "Pulses",
       "spices": "Spices",
-      "grains": "Grains & millets",
+      "grains": "Grains",
+      "millets": "Millets",
       "oilSeeds": "Oil seeds",
       "requestQuote": "Request a quote",
       "sampleRequest": "Sample request",

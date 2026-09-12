@@ -17,7 +17,7 @@ export function ProcessSection() {
         {t("heading")}
       </DisplayHeading>
 
-      <ol className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px overflow-hidden rounded-[14px] border border-[rgba(245,242,234,.14)] bg-[rgba(245,242,234,.14)]">
+      <ol className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-px overflow-hidden rounded-[14px] border border-[rgba(245,242,234,.14)] bg-[rgba(245,242,234,.14)]">
         {stages.map((stage) => (
           <li key={stage.number} className="bg-ink px-5 pt-6 pb-7">
             <div className="text-gold label-mono">{stage.number}</div>

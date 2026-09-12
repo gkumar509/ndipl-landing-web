@@ -39,7 +39,7 @@ export default async function TeamPage() {
 
       {leadership.length > 0 ? (
         <Section containerClassName="py-11">
-          <ul className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[22px]">
+          <ul className="grid grid-cols-[repeat(auto-fit,minmax(300px,420px))] justify-center gap-[22px]">
             {leadership.map((member) => (
               <li
                 key={member._id}
