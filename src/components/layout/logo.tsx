@@ -1,9 +1,10 @@
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 
-/** The NDIPL mark: a rounded green silo with two gradient "seeds". */
+/** The NDIPL mark: a green "n" with two gradient "seeds". */
 export function BrandMark({
   className,
   size = 34,
@@ -12,33 +13,16 @@ export function BrandMark({
   size?: number;
 }) {
   return (
-    <div
-      className={cn(
-        "bg-green relative flex-none rounded-t-[9px] rounded-b-[3px]",
-        className,
-      )}
-      style={{ width: size, height: size }}
+    <Image
+      src="/ndipl_logo.png"
+      alt=""
       aria-hidden="true"
-    >
-      <span
-        className="absolute rounded-full bg-linear-135 from-[#fcd34a] to-[#f0951a]"
-        style={{
-          left: size * 0.176,
-          bottom: size * 0.118,
-          width: size * 0.441,
-          height: size * 0.441,
-        }}
-      />
-      <span
-        className="absolute rounded-full bg-linear-135 from-[#fcd34a] to-[#f0951a]"
-        style={{
-          right: size * 0.118,
-          top: size * 0.118,
-          width: size * 0.265,
-          height: size * 0.265,
-        }}
-      />
-    </div>
+      width={527}
+      height={473}
+      priority
+      className={cn("flex-none", className)}
+      style={{ height: size, width: "auto" }}
+    />
   );
 }
 
