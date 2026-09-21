@@ -46,52 +46,36 @@
     "hero": {
       "badge": "Safe Food · Sustainable Farming · Global Standards",
       "title": "Premium agro products, sourced and processed with a conscience.",
-      "subtitle": "We source from carefully selected farming regions across India and process through advanced cleaning, grading, destoning, colour sorting and hygienic packaging to ensure superior purity and quality.",
+      "subtitle": "Sourced from selected Indian farming belts, then cleaned, graded, destoned, colour-sorted and packed for export-grade purity.",
       "exploreProducts": "Explore products",
       "talkToTeam": "Talk to sourcing team",
-      "stats": [
-        {
-          "value": "18+",
-          "label": "Export destinations"
-        },
-        {
-          "value": "40+",
-          "label": "Product lines"
-        },
-        {
-          "value": "100%",
-          "label": "Lot-wise lab testing"
-        }
-      ],
-      "collage": {
-        "heroShot": "farm / harvest hero shot — 1600x900",
-        "sorterShot": "color sorter line",
-        "cardTitle": "Lab-tested, batch-traceable",
-        "cardNote": "EVERY CONSIGNMENT"
-      }
-    },
-    "pillars": {
-      "eyebrow": "What we stand for",
-      "items": [
+      "pillars": [
         {
           "title": "Safe food",
-          "description": "Residue and contaminant testing on every lot, with hygienic handling from intake to sealed pack."
+          "short": "Residue-tested lots, hygienic handling end to end."
         },
         {
           "title": "Sustainable farming",
-          "description": "Long-term buying relationships with farmer groups, good-practice training and fair, transparent pricing."
+          "short": "Long-term farmer partnerships & fair, clear pricing."
         },
         {
           "title": "Soil & water conservation",
-          "description": "Watershed work, crop rotation guidance and irrigation efficiency programmes in our sourcing belts."
+          "short": "Watershed, rotation and irrigation programmes."
         }
       ]
+    },
+    "purpose": {
+      "eyebrow": "About us",
+      "heading": "Our purpose",
+      "body": "Nature's Delight Industries Private Limited (NDIPL) was established by agri-industry professionals to build a reliable, quality-driven sourcing platform for safe and sustainably produced food. NDIPL serves institutional buyers across India and international markets through an integrated network of farmers, rigorous quality testing, digital traceability, FSSAI-licensed and HACCP-certified processing infrastructure, NPOP and NOP organic certifications, storage facilities, and a presence across major Indian ports."
     },
     "categories": {
       "eyebrow": "Product range",
       "heading": "{count} categories, one standard of purity",
       "allProducts": "All products →",
-      "imageAlt": "{category} shot"
+      "imageAlt": "{category} shot",
+      "prev": "Previous categories",
+      "next": "Next categories"
     },
     "process": {
       "eyebrow": "From farm gate to container",
@@ -124,54 +108,43 @@
         }
       ]
     },
-    "compliance": {
-      "eyebrow": "Compliance",
-      "heading": "Certificates, test reports & partnerships",
-      "body": "Registrations, third-party lab reports and buyer audits are available on request for every shipment.",
-      "cta": "Request documentation",
-      "certifications": [
-        {
-          "name": "FSSAI",
-          "description": "Food business licence"
-        },
-        {
-          "name": "APEDA",
-          "description": "Registered exporter"
-        },
-        {
-          "name": "ISO 22000",
-          "description": "Food safety management"
-        },
-        {
-          "name": "HACCP",
-          "description": "Hazard control plan"
-        },
-        {
-          "name": "Spices Board",
-          "description": "Registration"
-        },
-        {
-          "name": "IEC & GST",
-          "description": "Import-export code"
-        },
-        {
-          "name": "Lab reports",
-          "description": "Pesticide residue, aflatoxin"
-        },
-        {
-          "name": "NPOP organic",
-          "description": "Select lines"
-        }
-      ],
-      "partnersEyebrow": "Trusted collaborations",
-      "partners": [
-        "logo — testing lab",
-        "logo — farmer producer org",
-        "logo — logistics partner",
-        "logo — trade body",
-        "logo — packaging partner",
-        "logo — buyer group"
-      ]
+    "proof": {
+      "network": {
+        "eyebrow": "Network",
+        "stats": [
+          {
+            "value": "12",
+            "label": "Sourcing belts"
+          },
+          {
+            "value": "4",
+            "label": "States"
+          },
+          {
+            "value": "2,400",
+            "label": "Registered farmers"
+          }
+        ]
+      },
+      "supplyChain": {
+        "eyebrow": "Supply chain",
+        "stats": [
+          {
+            "value": "5",
+            "label": "Processing stages"
+          },
+          {
+            "value": "48h",
+            "label": "Quote turnaround"
+          },
+          {
+            "value": "99.2%",
+            "label": "On-spec lots"
+          }
+        ]
+      },
+      "certsEyebrow": "Certified",
+      "bpEyebrow": "Business Parters"
     },
     "testimonial": {
       "quote": "“Consistent grading, clean documentation and shipments that land exactly as specified.”",
@@ -191,7 +164,7 @@
     "metaDescription": "Natures Delight Industries Private Limited is a trusted India-based manufacturer, merchant exporter, supplier and global sourcing partner specializing in premium-quality agro products.",
     "eyebrow": "About us",
     "heading": "Safe food, sustainable farming, and the soil and water it depends on",
-    "intro": "Rooted in Indian Soil. Nurtured by Tradition. Connected to the World. At Nature Delight Industries Private Limited (NDIPL), our story is deeply rooted in the fertile heartland of Bhopal, Madhya Pradesh. We do not view ourselves merely as agricultural suppliers or exporters—we see ourselves as caretakers of the land, bridge-builders connecting dedicated Indian farmers to global kitchens, and passionate believers in a healthier, cleaner world. Our guiding philosophy is straightforward, honest, and non-negotiable: \"Safe Food, Sustainable Farming, and Soil & Water Conservation.\" Real quality cannot be created in a laboratory or manufactured at the final hour. It begins long before the harvest ever takes place. It flourishes in the vitality of living soil, the purity of natural water sources, and the time-tested wisdom of the farming families who care for the fields. By standing shoulder-to-shoulder with smallholder growers, producer groups, and agricultural partners throughout India, we have built a transparent, ethical, and reliable farm-to-market family. Together, we bring wholesome, chemical-free produce directly from Indian soil to international tables.",
+    "intro": "Natures Delight Industries Private Limited (NDIPL) is an agri-commodity company headquartered in Bhopal, Madhya Pradesh. Established in 2025, NDIPL sources, processes and supplies food commodities to institutional buyers across India and international markets. India is a leading producer of grains, pulses and oilseeds, yet fragmented supply chains can make quality, traceability and compliance difficult to maintain consistently. At the same time, farmers adopting sustainable practices often lack reliable market access. NDIPL was created to bridge this gap. Founded by agri-industry professionals with 40+ years of combined experience, the company brings together farm-level sourcing, quality assurance, processing, storage, traceability and supply chain management under an integrated model. Within its first year, NDIPL established a B2B presence with leading food companies and is now focused on scaling as a reliable, long-term sourcing partner for buyers seeking safe, consistent and traceable commodities.",
     "blocks": [
       {
         "kicker": "WHO WE ARE",
@@ -257,62 +230,26 @@
       {
         "number": "01",
         "title": "Direct sourcing",
-        "description": "We buy from farmer groups and producer companies in the growing belts themselves, not through layers of traders. Every lot enters our records with the village, the season and the grower behind it.",
-        "points": [
-          "Procurement at village-level collection points across the sourcing belts",
-          "Lot codes that trace a consignment back to the farm it came from",
-          "A transparent, declared price to the grower with no undisclosed deductions",
-          "Buying against a crop plan agreed before sowing, so volume and grade are committed early"
-        ],
+        "description": "Our sourcing begins at the farm. NDIPL works with 50,000+ farmers across 60,000 hectares through integrated pest management, organic and regenerative farming practices. This enables us to source rice, wheat, pulses, oilseeds, millets and other commodities. Every lot is digitally linked to its farm origin, providing buyers with greater visibility and traceability across the supply chain. Our model supports assured market access for farmers while offering buyers.",
         "imageLabel": "village collection point / procurement in progress — 1200×900"
       },
       {
         "number": "02",
-        "title": "Farm / farmer registration",
-        "description": "Each supplying farm is registered before its first delivery. We record the holding, the crop plan and the inputs used, which is what makes residue compliance and traceability verifiable rather than promised.",
-        "points": [
-          "Farm profile with geo-location, area under crop and irrigation source",
-          "Grower records for seed, inputs and spray intervals through the season",
-          "Field visits and agronomy support from our team during the crop cycle",
-          "A registry refreshed every season, so the audit trail never goes stale"
-        ],
-        "imageLabel": "field registration with grower — 1200×900"
+        "title": "Quality Testing",
+        "description": "NDIPL assure quality from the farm to the final shipment. Our agronomist team works at the farm level, guiding growers on crop health, input use and harvest practices so that quality is built in before the produce reaches us. At each of our five processing units, a dedicated quality assurance and control team runs an in-house quality laboratory. Every commodity we supply is assessed against specified benchmarks agreed with our buyers. Our testing covers physical parameters such as moisture, foreign matter, broken grains and admixture, as well as safety parameters such as pesticide residues, aflatoxins and heavy metals. Routine checks are carried out in our in-house laboratories, and specialised analyses are carried out through accredited external laboratories. Samples are tested at intake, before storage and before dispatch, and the results are documented for each lot.",
+        "imageLabel": "field registration with grower — 1200x900"
       },
       {
         "number": "03",
         "title": "Certified products",
-        "description": "Certification is handled lot by lot, not as a company-wide sticker. Consignments ship with the certificates and test reports the destination market actually asks for.",
-        "points": [
-          "FSSAI-licensed operations and APEDA-registered export",
-          "Organic lots under NPOP / NOP scope, segregated from conventional stock",
-          "Third-party residue and quality testing against buyer specification",
-          "A certificate and analysis pack issued with every consignment"
-        ],
-        "imageLabel": "certificate and analysis pack — 1200×900"
+        "description": "Our operations are FSSAI-licensed and HACCP-certified, ensuring adherence to food safety and quality standards across handling and processing. For organic produce, NDIPL is certified under India’s National Programme for Organic Production (NPOP) and the USDA National Organic Program (NOP). We support farmer groups with structured record-keeping, internal control systems and inspection readiness to maintain organic compliance season after season. Each consignment is supported by relevant certifications and compliance documentation, enabling buyers to integrate products into their supply chains and audit processes with confidence.",
+        "imageLabel": "certificate and analysis pack — 1200x900"
       },
       {
         "number": "04",
-        "title": "Warehouse / supply chain management",
-        "description": "Between harvest and the container, produce sits in storage we control. Moisture, pest treatment and lot segregation are managed there, because that is where quality is usually lost.",
-        "points": [
-          "Covered, fumigated warehousing with lots kept physically separate",
-          "Moisture and infestation checks logged on a fixed schedule",
-          "Stock visibility from intake through dispatch against each order",
-          "Container stuffing, sealing and export documentation handled in house"
-        ],
+        "title": "Warehouse & Processing",
+        "description": "NDIPL operates 50,000 MT of dry and cold storage capacity across Maharashtra and Delhi, with lot-level inventory tracking and FIFO-based stock rotation. Located close to key EXIM hubs, our facilities enable efficient dispatch to domestic and international buyers. Through five primary and secondary processing units, NDIPL converts raw commodities into specification-ready products, including wheat, paddy and oilseeds such as soybean, mustard and groundnut. Our capabilities include cleaning, destoning, grading, sorting and value-added processing, with packaging tailored to buyer requirements, from bulk industrial formats to export-grade packaging.",
         "imageLabel": "warehouse bays and stacked lots — 1200x900"
-      },
-      {
-        "number": "05",
-        "title": "Processing and value additions",
-        "description": "Our processing line takes raw farm produce to the grade the buyer ordered — cleaned, sized, sorted and packed to the format their market needs.",
-        "points": [
-          "Cleaning, destoning, de-stemming and gravity separation",
-          "Grading, sieving and optical colour sorting to specification",
-          "Milling, splitting, polishing and dehydration where the product calls for it",
-          "Packing from retail pouches to bulk jute and PP bags, private label included"
-        ],
-        "imageLabel": "processing line / colour sorter and packing — 1200x900"
       }
     ]
   },
@@ -322,7 +259,8 @@
     "eyebrow": "Our team",
     "heading": "Agronomists, quality specialists and export hands",
     "intro": "Photographs, profiles and areas of expertise for the people behind every consignment.",
-    "departments": "Departments",
+    "leadership": "Leadership",
+    "employees": "Employees",
     "portraitAlt": "portrait 4:5 — {name}"
   },
   "products": {

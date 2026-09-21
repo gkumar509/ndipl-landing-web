@@ -115,6 +115,11 @@ html[lang="ar"] {
 }
 
 @layer base {
+  :root {
+    /* Lets width/height transition to and from keywords like max-content and
+       auto. Browsers without it fall back to snapping, as they do today. */
+    interpolate-size: allow-keywords;
+  }
   * {
     @apply border-border outline-ring/50;
   }

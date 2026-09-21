@@ -1,18 +1,16 @@
 import { CategoriesSection } from "./_sections/categories-section";
-// import { CertificationsSection } from "./_sections/certifications-section";
 import { HeroSection } from "./_sections/hero-section";
 import { JoinSection } from "./_sections/join-section";
-import { PillarsSection } from "./_sections/pillars-section";
 import { ProcessSection } from "./_sections/process-section";
+import { PurposeSection } from "./_sections/purpose-section";
 
 export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <PillarsSection />
+      <PurposeSection />
       <CategoriesSection />
       <ProcessSection />
-      {/* <CertificationsSection /> */}
       <JoinSection />
     </>
   );

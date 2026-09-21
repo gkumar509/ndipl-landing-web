@@ -39,7 +39,8 @@ export default async function TeamPage() {
 
       {leadership.length > 0 ? (
         <Section containerClassName="py-11">
-          <ul className="grid grid-cols-[repeat(auto-fit,minmax(300px,420px))] justify-center gap-[22px]">
+          <Eyebrow>{t("leadership")}</Eyebrow>
+          <ul className="mt-5 grid grid-cols-[repeat(auto-fit,minmax(230px,300px))] justify-center gap-4.5">
             {leadership.map((member) => (
               <li
                 key={member._id}
@@ -48,18 +49,19 @@ export default async function TeamPage() {
                 <SanityImage
                   value={member.image}
                   fallbackLabel={t("portraitAlt", { name: member.name ?? "" })}
-                  className="h-[260px]"
-                  sizes="(min-width: 1240px) 380px, (min-width: 640px) 50vw, 100vw"
+                  className="aspect-4/5"
+                  sizes="(min-width: 640px) 300px, 100vw"
+                  width={800}
                 />
-                <div className="p-[22px]">
-                  <h2 className="font-display text-2xl leading-[1.2]">
+                <div className="p-4">
+                  <h2 className="font-display text-xl leading-[1.2]">
                     {member.name}
                   </h2>
-                  <p className="text-green mt-[7px] text-xs font-medium tracking-[0.08em] uppercase">
+                  <p className="text-green mt-1.5 text-[11px] font-medium tracking-[0.08em] uppercase">
                     {member.role}
                   </p>
                   {member.bio ? (
-                    <p className="text-body mt-3.5 mb-4 text-sm leading-[1.65]">
+                    <p className="text-body mt-2.5 mb-3 text-[13px] leading-[1.6]">
                       {member.bio}
                     </p>
                   ) : null}
@@ -68,7 +70,7 @@ export default async function TeamPage() {
                       {member.tags.map((tag) => (
                         <li
                           key={tag}
-                          className="bg-sand text-body rounded-full px-[11px] py-[5px] text-[11.5px] font-medium"
+                          className="bg-sand text-body rounded-full px-2.5 py-1 text-[10.5px] font-medium"
                         >
                           {tag}
                         </li>
@@ -85,24 +87,27 @@ export default async function TeamPage() {
       {departments.length > 0 ? (
         <Section containerClassName="pb-[70px]">
           <div className="border-t border-[rgba(20,32,26,.1)] pt-7">
-            <Eyebrow>{t("departments")}</Eyebrow>
-            <ul className="mt-5 grid grid-cols-[repeat(auto-fit,minmax(230px,1fr))] gap-3.5">
+            <Eyebrow>{t("employees")}</Eyebrow>
+            <ul className="mt-5 grid grid-cols-[repeat(auto-fit,minmax(170px,220px))] gap-3.5">
               {departments.map((member) => (
                 <li
                   key={member._id}
-                  className="flex items-center gap-3.5 rounded-[14px] border border-[rgba(20,32,26,.08)] bg-white p-3.5"
+                  className="overflow-hidden rounded-[14px] border border-[rgba(20,32,26,.09)] bg-white transition-colors hover:border-[rgba(10,107,61,.4)]"
                 >
                   <SanityImage
                     value={member.image}
-                    className="size-[52px] flex-none rounded-full"
-                    sizes="52px"
-                    width={200}
+                    fallbackLabel={t("portraitAlt", { name: member.name ?? "" })}
+                    className="aspect-4/5"
+                    sizes="(min-width: 640px) 220px, 50vw"
+                    width={600}
                   />
-                  <div>
-                    <div className="text-sm font-semibold">{member.name}</div>
-                    <div className="text-stone mt-[3px] text-[12.5px] leading-[1.4]">
+                  <div className="p-3.5">
+                    <h3 className="font-display text-base leading-[1.2]">
+                      {member.name}
+                    </h3>
+                    <p className="text-green mt-[5px] text-[10.5px] font-medium tracking-[0.08em] uppercase">
                       {member.role}
-                    </div>
+                    </p>
                   </div>
                 </li>
               ))}

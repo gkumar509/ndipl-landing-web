@@ -5,7 +5,6 @@ import { getTranslations } from "next-intl/server";
 import {
   DisplayHeading,
   Eyebrow,
-  ImagePlaceholder,
   Section,
 } from "@/components/common/section";
 import { cn } from "@/lib/utils";
@@ -24,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: t("title"), description: t("metaDescription") };
 }
 
-const images = ["/7.jpg", "/10.jpg", "/11.jpg", "/12.jpg", "/13.jpg"];
+const images = ["/7.jpg", "/10.jpg", "/11.jpg", "/13.jpg"];
 
 export default function OurWorkPage() {
   const t = useTranslations("ourWork");
@@ -61,7 +60,7 @@ export default function OurWorkPage() {
               <p className="text-body text-[15px] leading-[1.65]">
                 {area.description}
               </p>
-              <ul className="mt-5 flex flex-col gap-2.5">
+              {/* <ul className="mt-5 flex flex-col gap-2.5">
                 {area.points.map((point) => (
                   <li
                     key={point}
@@ -74,10 +73,10 @@ export default function OurWorkPage() {
                     {point}
                   </li>
                 ))}
-              </ul>
+              </ul> */}
             </div>
 
-            <div className="w-[400px] h-[280px] mx-auto rounded-[20px] overflow-clip">
+            <div className="w-100 h-70 mx-auto rounded-[20px] overflow-clip">
               <Image
                 src={images[index]}
                 alt={area.title}
