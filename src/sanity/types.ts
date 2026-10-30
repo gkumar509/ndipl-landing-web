@@ -15,7 +15,21 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: schema.json
-export type TagList = Array<string>;
+export type StatGroup = {
+  _id: string;
+  _type: "statGroup";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  stats?: Array<{
+    value?: string;
+    label?: string;
+    _type: "stat";
+    _key: string;
+  }>;
+  displayOrder?: number;
+};
 
 export type SanityImageAssetReference = {
   _ref: string;
@@ -30,9 +44,8 @@ export type TeamMember = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name?: InternationalizedArrayString;
-  role?: InternationalizedArrayString;
-  group?: "leadership" | "department";
+  name?: string;
+  role?: string;
   image?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -41,22 +54,10 @@ export type TeamMember = {
     alt?: string;
     _type: "image";
   };
-  bio?: InternationalizedArrayText;
-  tags?: InternationalizedArrayTagList;
+  bio?: string;
+  tags?: Array<string>;
   displayOrder?: number;
 };
-
-export type InternationalizedArrayTagList = Array<
-  {
-    _key: string;
-  } & InternationalizedArrayTagListValue
->;
-
-export type InternationalizedArrayText = Array<
-  {
-    _key: string;
-  } & InternationalizedArrayTextValue
->;
 
 export type SanityImageCrop = {
   _type: "sanity.imageCrop";
@@ -74,12 +75,6 @@ export type SanityImageHotspot = {
   width?: number;
 };
 
-export type InternationalizedArrayString = Array<
-  {
-    _key: string;
-  } & InternationalizedArrayStringValue
->;
-
 export type ProductCategoryReference = {
   _ref: string;
   _type: "reference";
@@ -93,9 +88,27 @@ export type Product = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: InternationalizedArrayString;
+  title?: string;
   category?: ProductCategoryReference;
-  spec?: InternationalizedArrayString;
+  spec?: string;
+  details?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
   image?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -113,10 +126,10 @@ export type ProductCategory = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: InternationalizedArrayString;
+  title?: string;
   slug?: Slug;
-  summary?: InternationalizedArrayString;
-  note?: InternationalizedArrayString;
+  summary?: string;
+  note?: string;
   image?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -132,24 +145,6 @@ export type Slug = {
   _type: "slug";
   current?: string;
   source?: string;
-};
-
-export type InternationalizedArrayTagListValue = {
-  _type: "internationalizedArrayTagListValue";
-  value?: TagList;
-  language?: string;
-};
-
-export type InternationalizedArrayTextValue = {
-  _type: "internationalizedArrayTextValue";
-  value?: string;
-  language?: string;
-};
-
-export type InternationalizedArrayStringValue = {
-  _type: "internationalizedArrayStringValue";
-  value?: string;
-  language?: string;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -250,21 +245,15 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
-  | TagList
+  | StatGroup
   | SanityImageAssetReference
   | TeamMember
-  | InternationalizedArrayTagList
-  | InternationalizedArrayText
   | SanityImageCrop
   | SanityImageHotspot
-  | InternationalizedArrayString
   | ProductCategoryReference
   | Product
   | ProductCategory
   | Slug
-  | InternationalizedArrayTagListValue
-  | InternationalizedArrayTextValue
-  | InternationalizedArrayStringValue
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
@@ -276,7 +265,7 @@ export type AllSanitySchemaTypes =
 
 // Source: ../src/sanity/queries.ts
 // Variable: PRODUCT_CATEGORIES_QUERY
-// Query: *[_type == "productCategory"] | order(displayOrder asc) {    _id,    "slug": slug.current,      "title": coalesce(    title[language == $locale][0].value,    title[_key == $locale][0].value,    title[language == "en"][0].value,    title[_key == "en"][0].value  ),      "summary": coalesce(    summary[language == $locale][0].value,    summary[_key == $locale][0].value,    summary[language == "en"][0].value,    summary[_key == "en"][0].value  ),      "note": coalesce(    note[language == $locale][0].value,    note[_key == $locale][0].value,    note[language == "en"][0].value,    note[_key == "en"][0].value  ),      "image": image{    ...,    "alt": coalesce(alt, ""),    "lqip": asset->metadata.lqip  }  }
+// Query: *[_type == "productCategory"] | order(displayOrder asc) {    _id,    "slug": slug.current,    title,    summary,    note,      "image": image{    ...,    "alt": coalesce(alt, ""),    "lqip": asset->metadata.lqip  }  }
 export type PRODUCT_CATEGORIES_QUERY_RESULT = Array<{
   _id: string;
   slug: string | null;
@@ -296,7 +285,7 @@ export type PRODUCT_CATEGORIES_QUERY_RESULT = Array<{
 
 // Source: ../src/sanity/queries.ts
 // Variable: PRODUCTS_BY_CATEGORY_QUERY
-// Query: *[_type == "productCategory"] | order(displayOrder asc) {    _id,    "slug": slug.current,      "title": coalesce(    title[language == $locale][0].value,    title[_key == $locale][0].value,    title[language == "en"][0].value,    title[_key == "en"][0].value  ),      "summary": coalesce(    summary[language == $locale][0].value,    summary[_key == $locale][0].value,    summary[language == "en"][0].value,    summary[_key == "en"][0].value  ),      "note": coalesce(    note[language == $locale][0].value,    note[_key == $locale][0].value,    note[language == "en"][0].value,    note[_key == "en"][0].value  ),    "products": *[_type == "product" && category._ref == ^._id]      | order(displayOrder asc) {        _id,          "title": coalesce(    title[language == $locale][0].value,    title[_key == $locale][0].value,    title[language == "en"][0].value,    title[_key == "en"][0].value  ),          "spec": coalesce(    spec[language == $locale][0].value,    spec[_key == $locale][0].value,    spec[language == "en"][0].value,    spec[_key == "en"][0].value  ),          "image": image{    ...,    "alt": coalesce(alt, ""),    "lqip": asset->metadata.lqip  }      }  }
+// Query: *[_type == "productCategory"] | order(displayOrder asc) {    _id,    "slug": slug.current,    title,    summary,    note,    "products": *[_type == "product" && category._ref == ^._id]      | order(displayOrder asc) {        _id,        title,        spec,        details,          "image": image{    ...,    "alt": coalesce(alt, ""),    "lqip": asset->metadata.lqip  }      }  }
 export type PRODUCTS_BY_CATEGORY_QUERY_RESULT = Array<{
   _id: string;
   slug: string | null;
@@ -307,6 +296,24 @@ export type PRODUCTS_BY_CATEGORY_QUERY_RESULT = Array<{
     _id: string;
     title: string | null;
     spec: string | null;
+    details: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }> | null;
     image: {
       asset?: SanityImageAssetReference;
       media?: unknown;
@@ -320,47 +327,45 @@ export type PRODUCTS_BY_CATEGORY_QUERY_RESULT = Array<{
 }>;
 
 // Source: ../src/sanity/queries.ts
+// Variable: STAT_GROUPS_QUERY
+// Query: *[_type == "statGroup"] | order(displayOrder asc) {    _id,    title,    "stats": stats[]{      _key,      value,      label    }  }
+export type STAT_GROUPS_QUERY_RESULT = Array<{
+  _id: string;
+  title: string | null;
+  stats: Array<{
+    _key: string;
+    value: string | null;
+    label: string | null;
+  }> | null;
+}>;
+
+// Source: ../src/sanity/queries.ts
 // Variable: TEAM_QUERY
-// Query: {    "leadership": *[_type == "teamMember" && group == "leadership"]      | order(displayOrder asc) {        _id,          "name": coalesce(    name[language == $locale][0].value,    name[_key == $locale][0].value,    name[language == "en"][0].value,    name[_key == "en"][0].value  ),          "role": coalesce(    role[language == $locale][0].value,    role[_key == $locale][0].value,    role[language == "en"][0].value,    role[_key == "en"][0].value  ),          "bio": coalesce(    bio[language == $locale][0].value,    bio[_key == $locale][0].value,    bio[language == "en"][0].value,    bio[_key == "en"][0].value  ),          "tags": coalesce(    tags[language == $locale][0].value,    tags[_key == $locale][0].value,    tags[language == "en"][0].value,    tags[_key == "en"][0].value  ),          "image": image{    ...,    "alt": coalesce(alt, ""),    "lqip": asset->metadata.lqip  }      },    "departments": *[_type == "teamMember" && group == "department"]      | order(displayOrder asc) {        _id,          "name": coalesce(    name[language == $locale][0].value,    name[_key == $locale][0].value,    name[language == "en"][0].value,    name[_key == "en"][0].value  ),          "role": coalesce(    role[language == $locale][0].value,    role[_key == $locale][0].value,    role[language == "en"][0].value,    role[_key == "en"][0].value  ),          "image": image{    ...,    "alt": coalesce(alt, ""),    "lqip": asset->metadata.lqip  }      }  }
-export type TEAM_QUERY_RESULT = {
-  leadership: Array<{
-    _id: string;
-    name: string | null;
-    role: string | null;
-    bio: string | null;
-    tags: TagList | null;
-    image: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      alt: string | "";
-      _type: "image";
-      lqip: string | null;
-    } | null;
-  }>;
-  departments: Array<{
-    _id: string;
-    name: string | null;
-    role: string | null;
-    image: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      alt: string | "";
-      _type: "image";
-      lqip: string | null;
-    } | null;
-  }>;
-};
+// Query: *[_type == "teamMember"] | order(displayOrder asc) {    _id,    name,    role,    bio,    tags,      "image": image{    ...,    "alt": coalesce(alt, ""),    "lqip": asset->metadata.lqip  }  }
+export type TEAM_QUERY_RESULT = Array<{
+  _id: string;
+  name: string | null;
+  role: string | null;
+  bio: string | null;
+  tags: Array<string> | null;
+  image: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt: string | "";
+    _type: "image";
+    lqip: string | null;
+  } | null;
+}>;
 
 // Query TypeMap
 declare global {
   interface SanityQueries {
-    '\n  *[_type == "productCategory"] | order(displayOrder asc) {\n    _id,\n    "slug": slug.current,\n    \n  "title": coalesce(\n    title[language == $locale][0].value,\n    title[_key == $locale][0].value,\n    title[language == "en"][0].value,\n    title[_key == "en"][0].value\n  )\n,\n    \n  "summary": coalesce(\n    summary[language == $locale][0].value,\n    summary[_key == $locale][0].value,\n    summary[language == "en"][0].value,\n    summary[_key == "en"][0].value\n  )\n,\n    \n  "note": coalesce(\n    note[language == $locale][0].value,\n    note[_key == $locale][0].value,\n    note[language == "en"][0].value,\n    note[_key == "en"][0].value\n  )\n,\n    \n  "image": image{\n    ...,\n    "alt": coalesce(alt, ""),\n    "lqip": asset->metadata.lqip\n  }\n\n  }\n': PRODUCT_CATEGORIES_QUERY_RESULT;
-    '\n  *[_type == "productCategory"] | order(displayOrder asc) {\n    _id,\n    "slug": slug.current,\n    \n  "title": coalesce(\n    title[language == $locale][0].value,\n    title[_key == $locale][0].value,\n    title[language == "en"][0].value,\n    title[_key == "en"][0].value\n  )\n,\n    \n  "summary": coalesce(\n    summary[language == $locale][0].value,\n    summary[_key == $locale][0].value,\n    summary[language == "en"][0].value,\n    summary[_key == "en"][0].value\n  )\n,\n    \n  "note": coalesce(\n    note[language == $locale][0].value,\n    note[_key == $locale][0].value,\n    note[language == "en"][0].value,\n    note[_key == "en"][0].value\n  )\n,\n    "products": *[_type == "product" && category._ref == ^._id]\n      | order(displayOrder asc) {\n        _id,\n        \n  "title": coalesce(\n    title[language == $locale][0].value,\n    title[_key == $locale][0].value,\n    title[language == "en"][0].value,\n    title[_key == "en"][0].value\n  )\n,\n        \n  "spec": coalesce(\n    spec[language == $locale][0].value,\n    spec[_key == $locale][0].value,\n    spec[language == "en"][0].value,\n    spec[_key == "en"][0].value\n  )\n,\n        \n  "image": image{\n    ...,\n    "alt": coalesce(alt, ""),\n    "lqip": asset->metadata.lqip\n  }\n\n      }\n  }\n': PRODUCTS_BY_CATEGORY_QUERY_RESULT;
-    '\n  {\n    "leadership": *[_type == "teamMember" && group == "leadership"]\n      | order(displayOrder asc) {\n        _id,\n        \n  "name": coalesce(\n    name[language == $locale][0].value,\n    name[_key == $locale][0].value,\n    name[language == "en"][0].value,\n    name[_key == "en"][0].value\n  )\n,\n        \n  "role": coalesce(\n    role[language == $locale][0].value,\n    role[_key == $locale][0].value,\n    role[language == "en"][0].value,\n    role[_key == "en"][0].value\n  )\n,\n        \n  "bio": coalesce(\n    bio[language == $locale][0].value,\n    bio[_key == $locale][0].value,\n    bio[language == "en"][0].value,\n    bio[_key == "en"][0].value\n  )\n,\n        \n  "tags": coalesce(\n    tags[language == $locale][0].value,\n    tags[_key == $locale][0].value,\n    tags[language == "en"][0].value,\n    tags[_key == "en"][0].value\n  )\n,\n        \n  "image": image{\n    ...,\n    "alt": coalesce(alt, ""),\n    "lqip": asset->metadata.lqip\n  }\n\n      },\n    "departments": *[_type == "teamMember" && group == "department"]\n      | order(displayOrder asc) {\n        _id,\n        \n  "name": coalesce(\n    name[language == $locale][0].value,\n    name[_key == $locale][0].value,\n    name[language == "en"][0].value,\n    name[_key == "en"][0].value\n  )\n,\n        \n  "role": coalesce(\n    role[language == $locale][0].value,\n    role[_key == $locale][0].value,\n    role[language == "en"][0].value,\n    role[_key == "en"][0].value\n  )\n,\n        \n  "image": image{\n    ...,\n    "alt": coalesce(alt, ""),\n    "lqip": asset->metadata.lqip\n  }\n\n      }\n  }\n': TEAM_QUERY_RESULT;
+    '\n  *[_type == "productCategory"] | order(displayOrder asc) {\n    _id,\n    "slug": slug.current,\n    title,\n    summary,\n    note,\n    \n  "image": image{\n    ...,\n    "alt": coalesce(alt, ""),\n    "lqip": asset->metadata.lqip\n  }\n\n  }\n': PRODUCT_CATEGORIES_QUERY_RESULT;
+    '\n  *[_type == "productCategory"] | order(displayOrder asc) {\n    _id,\n    "slug": slug.current,\n    title,\n    summary,\n    note,\n    "products": *[_type == "product" && category._ref == ^._id]\n      | order(displayOrder asc) {\n        _id,\n        title,\n        spec,\n        details,\n        \n  "image": image{\n    ...,\n    "alt": coalesce(alt, ""),\n    "lqip": asset->metadata.lqip\n  }\n\n      }\n  }\n': PRODUCTS_BY_CATEGORY_QUERY_RESULT;
+    '\n  *[_type == "statGroup"] | order(displayOrder asc) {\n    _id,\n    title,\n    "stats": stats[]{\n      _key,\n      value,\n      label\n    }\n  }\n': STAT_GROUPS_QUERY_RESULT;
+    '\n  *[_type == "teamMember"] | order(displayOrder asc) {\n    _id,\n    name,\n    role,\n    bio,\n    tags,\n    \n  "image": image{\n    ...,\n    "alt": coalesce(alt, ""),\n    "lqip": asset->metadata.lqip\n  }\n\n  }\n': TEAM_QUERY_RESULT;
   }
 }
 // Lets @sanity/client releases that predate the global registry read it too

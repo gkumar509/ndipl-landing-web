@@ -1,23 +1,102 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { XIcon } from "lucide-react";
 import Link from "next/link";
+import { PortableText } from "next-sanity";
+import { Dialog } from "radix-ui";
 import { useEffect, useRef, useState } from "react";
 
 import { Container } from "@/components/common/container";
 import { SanityImage } from "@/components/common/sanity-image";
 import { Button } from "@/components/ui/button";
-import type { CategoryWithProducts } from "@/sanity/content-types";
+import type { CategoryWithProducts, Product } from "@/sanity/content-types";
 import { cn } from "@/lib/utils";
 
 const ALL = "__all__";
+
+// The spec overlay sits off-card until hover/focus. Devices without hover get
+// it shown outright, otherwise it would be unreachable on touch.
+const REVEAL =
+  "bg-black/55 text-white backdrop-blur-[2px] transition-transform duration-300 ease-out motion-reduce:transition-none group-hover:translate-0 group-focus-visible:translate-0 [@media(hover:none)]:translate-0";
+
+function ProductCard({ product }: { product: Product }) {
+  return (
+    <Dialog.Root>
+      <Dialog.Trigger className="group relative block aspect-[4/5] w-full overflow-hidden rounded-[14px] text-start outline-none focus-visible:ring-3 focus-visible:ring-[var(--color-green)]">
+        <SanityImage
+          value={product.image}
+          fallbackLabel={product.title ?? undefined}
+          className="size-full transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none"
+          sizes="(min-width: 1240px) 280px, (min-width: 640px) 50vw, 100vw"
+        />
+        <h3 className="absolute top-0 left-0 max-w-[85%] rounded-br-[14px] bg-black/55 px-4 py-2.5 text-[17px] font-semibold text-white backdrop-blur-[2px]">
+          {product.title}
+        </h3>
+        {product.spec ? (
+          <p
+            className={cn(
+              "absolute inset-x-0 bottom-0 translate-y-full p-3.5 text-[12.5px] leading-[1.5]",
+              REVEAL,
+            )}
+          >
+            {product.spec}
+          </p>
+        ) : null}
+      </Dialog.Trigger>
+
+      <Dialog.Portal>
+        <Dialog.Overlay className="data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0 fixed inset-0 z-50 bg-black/60 backdrop-blur-sm" />
+        <Dialog.Content className="data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 fixed top-1/2 left-1/2 z-50 grid max-h-[calc(100dvh-32px)] w-[calc(100%-32px)] max-w-[880px] -translate-1/2 overflow-y-auto rounded-[20px] bg-white shadow-[0_24px_60px_-28px_rgba(20,32,26,.75)] md:grid-cols-2">
+          <SanityImage
+            value={product.image}
+            fallbackLabel={product.title ?? undefined}
+            className="aspect-[4/3] md:aspect-auto md:min-h-[420px]"
+            sizes="(min-width: 768px) 440px, 100vw"
+          />
+          <div className="flex flex-col p-6 md:p-8">
+            <Dialog.Title className="font-display pe-8 text-[30px] leading-[1.1]">
+              {product.title}
+            </Dialog.Title>
+            <Dialog.Description className="text-stone mt-2 text-[14px] leading-[1.5]">
+              {product.spec}
+            </Dialog.Description>
+            {product.details?.length ? (
+              <div className="text-body mt-5 text-[14.5px] leading-[1.65] [&_a]:underline [&_h2]:mt-5 [&_h2]:text-[18px] [&_h2]:font-semibold [&_h3]:mt-4 [&_h3]:font-semibold [&_li]:mt-1 [&_ol]:mt-3 [&_ol]:list-decimal [&_ol]:ps-5 [&_p+p]:mt-3 [&_strong]:text-ink [&_ul]:mt-3 [&_ul]:list-disc [&_ul]:ps-5">
+                <PortableText value={product.details} />
+              </div>
+            ) : null}
+            <Button asChild variant="brand" size="pill" className="mt-6 self-start">
+              <Link
+                href={{
+                  pathname: "/contact",
+                  query: { subject: product.title ?? "" },
+                }}
+              >
+                Enquire
+              </Link>
+            </Button>
+          </div>
+          <Dialog.Close asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute top-3 right-3 rounded-full bg-white/85"
+            >
+              <XIcon />
+              <span className="sr-only">Close</span>
+            </Button>
+          </Dialog.Close>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
+  );
+}
 
 export function ProductCatalog({
   categories,
 }: {
   categories: CategoryWithProducts[];
 }) {
-  const t = useTranslations("products");
   const [active, setActive] = useState<string>(ALL);
 
   // The CTA panel is sticky-bottom; it compacts while it rides the viewport.
@@ -52,7 +131,7 @@ export function ProductCatalog({
   }, [stuck]);
 
   const tabs = [
-    { id: ALL, label: t("all") },
+    { id: ALL, label: "All" },
     ...categories.map((category) => ({
       id: category._id,
       label: category.title ?? "",
@@ -103,38 +182,8 @@ export function ProductCatalog({
 
             <ul className="mt-[22px] grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-4">
               {category.products.map((product) => (
-                <li
-                  key={product._id}
-                  className="overflow-hidden rounded-[14px] border border-[rgba(20,32,26,.09)] bg-white transition-colors hover:border-[var(--color-green)]"
-                >
-                  <SanityImage
-                    value={product.image}
-                    className="h-[130px]"
-                    sizes="(min-width: 1240px) 280px, (min-width: 640px) 50vw, 100vw"
-                  />
-                  <div className="p-[15px]">
-                    <h3 className="text-[15px] font-semibold">
-                      {product.title}
-                    </h3>
-                    <p className="text-stone mt-[5px] text-[12.5px] leading-[1.5]">
-                      {product.spec}
-                    </p>
-                    <Button
-                      asChild
-                      variant="soft"
-                      size="blockSm"
-                      className="mt-3"
-                    >
-                      <Link
-                        href={{
-                          pathname: "/contact",
-                          query: { subject: product.title ?? "" },
-                        }}
-                      >
-                        {t("enquire")}
-                      </Link>
-                    </Button>
-                  </div>
+                <li key={product._id}>
+                  <ProductCard product={product} />
                 </li>
               ))}
             </ul>
@@ -169,7 +218,7 @@ export function ProductCatalog({
                     stuck && "sm:text-[21px]",
                   )}
                 >
-                  {t("customHeading")}
+                  Need a private-label or custom pack size?
                 </p>
                 <div
                   className={cn(
@@ -178,7 +227,7 @@ export function ProductCatalog({
                   )}
                 >
                   <p className="min-h-0 text-[14.5px] text-[rgba(245,242,234,.62)]">
-                    {t("customBody")}
+                    From 1 kg retail pouches to 50 kg PP bags and bulk containers.
                   </p>
                 </div>
               </div>
@@ -192,7 +241,7 @@ export function ProductCatalog({
                     query: { interest: "sample" },
                   }}
                 >
-                  {t("requestSamples")}
+                  Request samples
                 </Link>
               </Button>
               <div
@@ -206,7 +255,7 @@ export function ProductCatalog({
               >
                 <div className="min-h-0 min-w-0">
                   <Button asChild variant="inkOutline" size="pill">
-                    <Link href="/contact">{t("downloadCatalogue")}</Link>
+                    <Link href="/contact">Download catalogue</Link>
                   </Button>
                 </div>
               </div>

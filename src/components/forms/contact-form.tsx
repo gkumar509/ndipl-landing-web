@@ -1,8 +1,6 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useLocale, useTranslations } from "next-intl";
-import { useMemo } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
@@ -23,7 +21,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { useRecaptcha } from "@/hooks/use-recaptcha";
 import {
   INTEREST_KEYS,
-  buildContactSchema,
+  INTEREST_LABELS,
+  contactSchema,
   type ContactEnquiry,
   type ContactInput,
 } from "@/lib/contact-schema";
@@ -31,6 +30,8 @@ import { countryOptions } from "@/lib/countries";
 import { cn } from "@/lib/utils";
 
 const RECAPTCHA_ACTION = "contact_submit";
+const GENERIC_ERROR = "Your enquiry could not be sent. Please try again.";
+const countries = countryOptions();
 
 const fieldLabel =
   "text-stone mb-[7px] block text-[11.5px] font-medium tracking-[0.06em] uppercase";
@@ -44,23 +45,7 @@ export function ContactForm({
   /** Prefill from a link, e.g. the "Enquire" buttons on the products page. */
   defaults?: Partial<ContactInput>;
 }) {
-  const t = useTranslations("form");
-  const locale = useLocale();
   const { execute } = useRecaptcha();
-
-  const countries = useMemo(() => countryOptions(locale), [locale]);
-
-  const schema = useMemo(
-    () =>
-      buildContactSchema({
-        name: t("errors.name"),
-        email: t("errors.email"),
-        country: t("errors.country"),
-        interest: t("errors.interest"),
-        message: t("errors.message"),
-      }),
-    [t],
-  );
 
   const {
     register,
@@ -70,7 +55,7 @@ export function ContactForm({
     setError,
     formState: { errors, isSubmitting },
   } = useForm<ContactInput, unknown, ContactEnquiry>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(contactSchema),
     defaultValues: {
       name: "",
       company: "",
@@ -102,17 +87,19 @@ export function ContactForm({
       if (!res.ok) {
         for (const [field, msgs] of Object.entries(data.fieldErrors ?? {})) {
           setError(field as keyof ContactInput, {
-            message: msgs?.[0] ?? t("errors.invalid"),
+            message: msgs?.[0] ?? "Invalid value",
           });
         }
-        toast.error(data.error ?? t("genericError"));
+        toast.error(data.error ?? GENERIC_ERROR);
         return;
       }
 
       reset();
-      toast.success(t("success"));
+      toast.success(
+        "Thanks — your enquiry is with our export desk. We reply within one working day.",
+      );
     } catch {
-      toast.error(t("genericError"));
+      toast.error(GENERIC_ERROR);
     }
   });
 
@@ -126,18 +113,18 @@ export function ContactForm({
       )}
     >
       <p className="font-display mb-[22px] text-[26px] leading-[1.2]">
-        {t("heading")}
+        Enquiry form
       </p>
 
       <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
         <Field data-invalid={!!errors.name}>
           <label htmlFor="contact-name" className={fieldLabel}>
-            {t("name")}
+            Full name
           </label>
           <Input
             id="contact-name"
             autoComplete="name"
-            placeholder={t("namePlaceholder")}
+            placeholder="Your name"
             aria-invalid={!!errors.name}
             className={control}
             {...register("name")}
@@ -147,12 +134,12 @@ export function ContactForm({
 
         <Field data-invalid={!!errors.company}>
           <label htmlFor="contact-company" className={fieldLabel}>
-            {t("company")}
+            Company
           </label>
           <Input
             id="contact-company"
             autoComplete="organization"
-            placeholder={t("companyPlaceholder")}
+            placeholder="Company name"
             aria-invalid={!!errors.company}
             className={control}
             {...register("company")}
@@ -162,13 +149,13 @@ export function ContactForm({
 
         <Field data-invalid={!!errors.email}>
           <label htmlFor="contact-email" className={fieldLabel}>
-            {t("email")}
+            Work email
           </label>
           <Input
             id="contact-email"
             type="email"
             autoComplete="email"
-            placeholder={t("emailPlaceholder")}
+            placeholder="name@company.com"
             aria-invalid={!!errors.email}
             className={control}
             dir="ltr"
@@ -178,7 +165,7 @@ export function ContactForm({
         </Field>
 
         <Field data-invalid={!!errors.country}>
-          <span className={fieldLabel}>{t("country")}</span>
+          <span className={fieldLabel}>Country</span>
           <Controller
             control={formControl}
             name="country"
@@ -186,10 +173,10 @@ export function ContactForm({
               <Select value={field.value} onValueChange={field.onChange}>
                 <SelectTrigger
                   className={cn(control, "w-full")}
-                  aria-label={t("country")}
+                  aria-label="Country"
                   aria-invalid={!!errors.country}
                 >
-                  <SelectValue placeholder={t("countryPlaceholder")} />
+                  <SelectValue placeholder="Select country" />
                 </SelectTrigger>
                 <SelectContent className="max-h-72">
                   <SelectGroup>
@@ -215,7 +202,7 @@ export function ContactForm({
         </Field>
 
         <Field data-invalid={!!errors.interest}>
-          <span className={fieldLabel}>{t("interest")}</span>
+          <span className={fieldLabel}>Interest</span>
           <Controller
             control={formControl}
             name="interest"
@@ -223,15 +210,15 @@ export function ContactForm({
               <Select value={field.value} onValueChange={field.onChange}>
                 <SelectTrigger
                   className={cn(control, "w-full")}
-                  aria-label={t("interest")}
+                  aria-label="Interest"
                   aria-invalid={!!errors.interest}
                 >
-                  <SelectValue placeholder={t("interestPlaceholder")} />
+                  <SelectValue placeholder="Product enquiry" />
                 </SelectTrigger>
                 <SelectContent>
                   {INTEREST_KEYS.map((key) => (
                     <SelectItem key={key} value={key}>
-                      {t(`interests.${key}`)}
+                      {INTEREST_LABELS[key]}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -243,11 +230,11 @@ export function ContactForm({
 
         <Field data-invalid={!!errors.quantity}>
           <label htmlFor="contact-quantity" className={fieldLabel}>
-            {t("quantity")}
+            Quantity
           </label>
           <Input
             id="contact-quantity"
-            placeholder={t("quantityPlaceholder")}
+            placeholder="In metric tonnes"
             aria-invalid={!!errors.quantity}
             className={control}
             {...register("quantity")}
@@ -257,12 +244,12 @@ export function ContactForm({
 
         <Field className="sm:col-span-2" data-invalid={!!errors.message}>
           <label htmlFor="contact-message" className={fieldLabel}>
-            {t("message")}
+            Message
           </label>
           <Textarea
             id="contact-message"
             rows={4}
-            placeholder={t("messagePlaceholder")}
+            placeholder="Product, grade, quantity, packing and destination port"
             aria-invalid={!!errors.message}
             className="min-h-[110px] rounded-[10px] text-sm"
             {...register("message")}
@@ -280,7 +267,7 @@ export function ContactForm({
                 onCheckedChange={field.onChange}
                 className="mt-px"
               />
-              {t("catalogue")}
+              Send me the product catalogue and certification pack
             </label>
           )}
         />
@@ -292,32 +279,29 @@ export function ContactForm({
           disabled={isSubmitting}
           className="sm:col-span-2"
         >
-          {isSubmitting ? t("submitting") : t("submit")}
+          {isSubmitting ? "Sending…" : "Submit enquiry"}
         </Button>
 
         <p className="text-stone text-[11.5px] leading-[1.5] sm:col-span-2">
-          {t.rich("recaptchaNotice", {
-            privacy: (chunks) => (
-              <a
-                className="underline underline-offset-2"
-                href="https://policies.google.com/privacy"
-                target="_blank"
-                rel="noreferrer"
-              >
-                {chunks}
-              </a>
-            ),
-            terms: (chunks) => (
-              <a
-                className="underline underline-offset-2"
-                href="https://policies.google.com/terms"
-                target="_blank"
-                rel="noreferrer"
-              >
-                {chunks}
-              </a>
-            ),
-          })}
+          Protected by reCAPTCHA — the Google{" "}
+          <a
+            className="underline underline-offset-2"
+            href="https://policies.google.com/privacy"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Privacy Policy
+          </a>{" "}
+          and{" "}
+          <a
+            className="underline underline-offset-2"
+            href="https://policies.google.com/terms"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Terms of Service
+          </a>{" "}
+          apply.
         </p>
       </div>
     </form>

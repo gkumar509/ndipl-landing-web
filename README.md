@@ -1,12 +1,11 @@
 # NDIPL Website
 
 Next.js 16 (App Router) + Tailwind CSS v4 + shadcn/ui, with Sanity as the CMS
-and full EN / HI / MR / AR translation. The UI is a direct implementation of the
+in English. The UI is a direct implementation of the
 `NDIPL Website.dc.html` design.
 
 ```
 .                            Next.js app (the website)
-├── messages/                Translation catalogues (en, hi, mr, ar)
 ├── src/app/(site)/          Public pages — home, about, team, products, careers, contact
 │   ├── _sections/           Home-page sections
 │   └── <page>/_components/  Components owned by a single page
@@ -15,7 +14,6 @@ and full EN / HI / MR / AR translation. The UI is a direct implementation of the
 │   ├── common/              Shared building blocks (Container, Section, SanityImage…)
 │   ├── layout/              Header, footer, logo
 │   └── forms/               ContactForm
-├── src/i18n/                Locale list, resolution and request config
 ├── src/sanity/              Client, live fetching, image builder, GROQ queries
 ├── src/server/              Server-only integrations (reCAPTCHA, Google Sheets)
 └── studio/                  Standalone Sanity Studio (schemas + seed script)
@@ -47,52 +45,23 @@ Let the site read drafts by adding its origin to CORS once:
 npm exec --workspace studio -- sanity cors add http://localhost:3000 --credentials
 ```
 
-## Languages
-
-The site ships in English, Hindi, Marathi and Arabic, powered by `next-intl`.
-
-- **The locale is a query parameter**, not a path segment: `/products?lang=hi`.
-  `src/proxy.ts` resolves it, remembers it in the `NEXT_LOCALE` cookie so
-  ordinary links keep the visitor's language, and forwards it to the server on a
-  request header that `src/i18n/request.ts` reads.
-- English is the default and needs no parameter.
-- Arabic sets `dir="rtl"` on `<html>`; layout uses logical properties (`ms-*`)
-  where direction matters.
-- Karla and Instrument Serif have no Devanagari or Arabic glyphs, so
-  `globals.css` swaps the underlying font variables per `html[lang]` and the rest
-  of the type scale is inherited unchanged.
-- **Interface copy** lives in `messages/<locale>.json`. All four files share an
-  identical key structure, which `npm test` does not check but
-  `node -e` parity checks in review do — keep them in sync when adding keys.
-- **CMS content** is translated per field via
-  `sanity-plugin-internationalized-array`; queries request `$locale` and fall
-  back to English when a translation is missing.
-
-> The Hindi, Marathi and Arabic copy was machine-translated as a starting point.
-> Have a native speaker review it before launch — particularly the trade terms
-> (sortex, destoning, ASTA grades), which were kept close to industry usage.
-
-Because the locale is resolved per request, every page renders dynamically.
-
 ## Content model
 
 Managed in `studio/src/schemaTypes/`:
 
 | Type | Fields |
 | --- | --- |
-| `productCategory` | title\*, slug, summary\*, quality note\*, image, display order |
-| `product` | title\*, category (reference), spec\*, image, display order |
-| `teamMember` | name\*, role\*, group (leadership / department), portrait, bio\*, tags\*, display order |
+| `productCategory` | title, slug, summary, quality note, image, display order |
+| `product` | title, category (reference), spec, details (rich text), image, display order |
+| `teamMember` | name, role, portrait, bio (max 120 chars), tags, display order |
+| `statGroup` | title, stats (value + label), display order |
 
-\* translated per locale.
-
-`displayOrder` (lower first) controls ordering everywhere. Leadership members
-render as full profile cards; department members render in the compact list
-below them. Queries live in [src/sanity/queries.ts](src/sanity/queries.ts).
+`displayOrder` (lower first) controls ordering everywhere. Queries live in
+[src/sanity/queries.ts](src/sanity/queries.ts).
 
 Everything outside Team and Products — hero copy, pillars, the six processing
-stages, certifications, about, careers and contact details — is interface copy in
-`messages/`.
+stages, certifications, about, careers and contact details — is written inline
+in the page and section components.
 
 ### Seed the design's content
 
@@ -104,8 +73,7 @@ SANITY_STUDIO_PROJECT_ID=<id> SANITY_WRITE_TOKEN=<editor token> npm run seed
 ```
 
 Seeded documents use fixed `seed.*` ids, so re-running updates them in place and
-leaves anything you author in the Studio alone. Only English values are seeded;
-add the other locales in the Studio. Images are not seeded — until they are
+leaves anything you author in the Studio alone. Only English values are seeded. Images are not seeded — until they are
 uploaded, the pages show the design's placeholder hatch.
 
 ## Design notes
@@ -146,13 +114,11 @@ so the export desk reads one consistent sheet.
 
 The country field is the full ISO 3166-1 list (249 entries) held as codes in
 [src/lib/countries.ts](src/lib/countries.ts); names come from the platform's
-`Intl.DisplayNames`, so they are already translated into every supported locale
-with no country dataset to ship or keep current. NDIPL's main export markets are
+`Intl.DisplayNames`, with no country dataset to ship or keep current. NDIPL's main export markets are
 pinned above the alphabetical list.
 
 Validation lives in [src/lib/contact-schema.ts](src/lib/contact-schema.ts) and
-runs on both the client (translated messages, instant feedback) and the server
-(English messages — it is the trust boundary). Server errors are logged but
+runs on both the client (instant feedback) and the server (the trust boundary). Server errors are logged but
 never returned to the browser.
 
 ## Environment variables

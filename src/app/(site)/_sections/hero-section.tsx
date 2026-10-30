@@ -1,42 +1,53 @@
-import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 
 import { Container } from "@/components/common/container";
 import { Button } from "@/components/ui/button";
 
-type Pillar = { title: string; short: string };
-
-const logoSrc = [
-  "/safe_food_logo.png",
-  "/sustainable_farming_logo.png",
-  "/soil_water_conservation_logo.png",
+const pillars = [
+  {
+    title: "Safe food",
+    short: "Residue-tested lots, hygienic handling end to end.",
+    logo: "/safe_food_logo.png",
+  },
+  {
+    title: "Sustainable farming",
+    short: "Long-term farmer partnerships & fair, clear pricing.",
+    logo: "/sustainable_farming_logo.png",
+  },
+  {
+    title: "Soil & water conservation",
+    short: "Watershed, rotation and irrigation programmes.",
+    logo: "/soil_water_conservation_logo.png",
+  },
 ];
 
+const heroImages = ["/hero_1.jpg", "/hero_2.jpg", "/hero_3.jpg"];
+
+// Must match `.hero-slide` in globals.css: 3 slides × 6s = 18s cycle, 1.5s fade.
+const HERO_SLIDE_SECONDS = 6;
+const HERO_FADE_SECONDS = 1.5;
+
 export function HeroSection() {
-  const t = useTranslations("home.hero");
-  const pillars = t.raw("pillars") as Pillar[];
-
   return (
-    // The header is sticky but in flow, so a full-svh hero would push the
-    // pillar cards below the fold. 72px is the header's measured height.
-    // ponytail: hardcoded header height, swap for a CSS var if the header grows
-    // a second row.
     <section className="relative isolate flex flex-col overflow-hidden md:min-h-[calc(100svh-72px)]">
-      {/* Photo is a md-and-up treatment; on a phone the hero is plain type on
-          the page background. `sizes` keeps phones off the large candidates,
-          since a hidden image is still fetched. */}
-      <Image
-        src="/1.jpeg"
-        alt=""
-        fill
-        priority
-        sizes="(max-width: 767px) 1px, 100vw"
-        className="-z-20 hidden object-cover md:block"
-      />
+      <div aria-hidden className="absolute inset-0 -z-20 hidden md:block">
+        {heroImages.map((src, i) => (
+          <Image
+            key={src}
+            src={src}
+            alt=""
+            fill
+            priority={i === 0}
+            sizes="(max-width: 767px) 1px, 100vw"
+            className="hero-slide translate-x-[5%] translate-y-[4%] scale-115 object-cover"
+            style={{
+              animationDelay: `${i * HERO_SLIDE_SECONDS - HERO_FADE_SECONDS}s`,
+            }}
+          />
+        ))}
+      </div>
 
-      {/* Blur only — no tint. Fades out across the container so the right of
-          the photo stays sharp. */}
       <div
         aria-hidden
         className="absolute inset-0 -z-10 hidden backdrop-blur-sm mask-[linear-gradient(to_right,black_0%,black_45%,transparent_72%)] rtl:mask-[linear-gradient(to_left,black_0%,black_45%,transparent_72%)] md:block"
@@ -45,19 +56,20 @@ export function HeroSection() {
       <Container className="flex flex-1 items-center py-[64px] md:py-[80px]">
         <div className="max-w-[640px] md:text-on-ink md:[text-shadow:0_1px_16px_rgba(20,32,26,.7)]">
           <div className="text-green inline-flex w-fit items-center gap-2 rounded-full border border-[rgba(10,107,61,.22)] px-[13px] py-1.5 text-[11.5px] font-medium tracking-[0.06em] uppercase md:border-[rgba(245,242,234,.34)] md:text-inherit">
-            {t("badge")}
+            Safe Food · Sustainable Farming · Soil & Water conservation
           </div>
 
           <h1 className="font-display mt-[22px] text-[clamp(40px,5vw,66px)] leading-[1.06] text-pretty">
-            {t("title")}
+            Premium agro products, sourced and processed with a conscience.
           </h1>
           <p className="text-body mt-5 max-w-[47ch] text-[17.5px] leading-[1.65] text-pretty md:text-[rgba(245,242,234,.92)]">
-            {t("subtitle")}
+            Sourced from selected Indian farming belts, then cleaned, graded,
+            destoned, colour-sorted and packed for export-grade purity.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild variant="brand" size="pillLg">
-              <Link href="/products">{t("exploreProducts")}</Link>
+              <Link href="/products">Explore products</Link>
             </Button>
             <Button
               asChild
@@ -65,7 +77,7 @@ export function HeroSection() {
               size="pillLg"
               className="md:text-on-ink md:hover:text-on-ink md:border-[rgba(245,242,234,.34)] md:hover:border-[rgba(245,242,234,.9)]"
             >
-              <Link href="/contact">{t("talkToTeam")}</Link>
+              <Link href="/contact">Talk to sourcing team</Link>
             </Button>
           </div>
         </div>
@@ -76,7 +88,7 @@ export function HeroSection() {
             cancel Container's padding so the row runs edge to edge on a phone
             while the first card still lines up with the copy above. */}
         <ul className="-mx-[18px] flex snap-x snap-mandatory gap-3 overflow-x-auto px-[18px] pb-1 sm:-mx-7 sm:px-7 md:mx-0 md:grid md:grid-cols-3 md:gap-4 md:overflow-visible md:px-0">
-          {pillars.map((pillar, i) => (
+          {pillars.map((pillar) => (
             <li
               key={pillar.title}
               className="bg-cream flex items-center gap-2 w-[76vw] shrink-0 snap-start rounded-2xl border border-[rgba(20,32,26,.08)] p-[18px] shadow-[0_18px_40px_-24px_rgba(20,32,26,.45)] sm:w-[330px] md:w-auto md:p-5"
@@ -84,7 +96,7 @@ export function HeroSection() {
               {/* The PNG has a white ground; multiply blends it into the card,
                   which is why the card stays opaque rather than glass. */}
               <Image
-                src={logoSrc[i] || ""}
+                src={pillar.logo}
                 alt=""
                 width={1408}
                 height={768}

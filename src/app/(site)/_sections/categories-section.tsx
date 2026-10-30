@@ -1,4 +1,3 @@
-import { getLocale, getTranslations } from "next-intl/server";
 import Link from "next/link";
 
 import { SanityImage } from "@/components/common/sanity-image";
@@ -10,13 +9,7 @@ import { sanityFetch } from "@/sanity/lib/live";
 import { PRODUCT_CATEGORIES_QUERY } from "@/sanity/queries";
 
 export async function CategoriesSection() {
-  const locale = await getLocale();
-  const t = await getTranslations("home.categories");
-
-  const { data } = await sanityFetch({
-    query: PRODUCT_CATEGORIES_QUERY,
-    params: { locale },
-  });
+  const { data } = await sanityFetch({ query: PRODUCT_CATEGORIES_QUERY });
   const categories = (data ?? []) as ProductCategory[];
 
   if (categories.length === 0) return null;
@@ -25,18 +18,20 @@ export async function CategoriesSection() {
     <Section containerClassName="py-[76px]">
       <div className="flex flex-wrap items-end justify-between gap-5">
         <div>
-          <Eyebrow>{t("eyebrow")}</Eyebrow>
+          <Eyebrow>Product range</Eyebrow>
           <DisplayHeading className="mt-3">
-            {t("heading", { count: categories.length })}
+            {categories.length} categories, one standard of purity
           </DisplayHeading>
         </div>
         <Button asChild variant="brandOutline" size="pill">
-          <Link href="/products">{t("allProducts")}</Link>
+          <Link href="/products">All products →</Link>
         </Button>
       </div>
 
       <div className="mt-[34px]">
-        <CategoriesCarousel prevLabel={t("prev")} nextLabel={t("next")}>
+        <CategoriesCarousel prevLabel="Previous categories"
+          nextLabel="Next categories"
+        >
           {categories.map((category) => (
             <li
               key={category._id}
@@ -48,9 +43,7 @@ export async function CategoriesSection() {
               >
                 <SanityImage
                   value={category.image}
-                  fallbackLabel={t("imageAlt", {
-                    category: category.title ?? "",
-                  })}
+                  fallbackLabel={`${category.title ?? ""} shot`}
                   className="h-[150px]"
                   sizes="290px"
                 />

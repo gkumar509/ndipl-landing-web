@@ -1,18 +1,11 @@
 "use client";
 
-import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 import { Logo } from "@/components/layout/logo";
 import { Button } from "@/components/ui/button";
-// import {
-//   DropdownMenu,
-//   DropdownMenuContent,
-//   DropdownMenuItem,
-//   DropdownMenuTrigger,
-// } from "@/components/ui/dropdown-menu";
 import {
   Sheet,
   SheetClose,
@@ -21,13 +14,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-// import {
-//   LOCALES,
-//   LOCALE_LABELS,
-//   LOCALE_PARAM,
-//   type Locale,
-// } from "@/i18n/routing";
-import { NAV_ITEMS } from "@/lib/site";
+import { NAV_ITEMS, WHATSAPP_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 function isActive(pathname: string, href: string) {
@@ -49,21 +36,7 @@ function isBranchActive(
 
 export function SiteHeader() {
   const pathname = usePathname();
-  // const searchParams = useSearchParams();
-  // const router = useRouter();
-  // const locale = useLocale() as Locale;
-  const t = useTranslations("nav");
   const [menuOpen, setMenuOpen] = useState(false);
-
-  /** Language lives in the query string, so switching rewrites `?lang=`. */
-  // function switchLocale(next: Locale) {
-  //   const params = new URLSearchParams(searchParams);
-  //   params.set(LOCALE_PARAM, next);
-  //   router.replace(`${pathname}?${params}`);
-  //   router.refresh();
-  // }
-
-  // const active = LOCALE_LABELS[locale] ?? LOCALE_LABELS.en;
 
   return (
     <header className="sticky top-0 z-50 border-b border-[rgba(20,32,26,.09)] bg-[rgba(250,248,243,.92)] backdrop-blur-[10px]">
@@ -83,7 +56,7 @@ export function SiteHeader() {
                   isBranchActive(pathname, item) ? "text-green" : "text-ink",
                 )}
               >
-                {t(item.key)}
+                {item.label}
                 {"children" in item && (
                   <span aria-hidden className="text-stone text-[9px]">
                     ▼
@@ -118,7 +91,7 @@ export function SiteHeader() {
                             : "text-ink",
                         )}
                       >
-                        {t(child.key)}
+                        {child.label}
                       </Link>
                     ))}
                   </div>
@@ -129,51 +102,22 @@ export function SiteHeader() {
         </nav>
 
         <div className="order-3 ms-auto flex flex-none items-center gap-2">
-          {/* <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button
-                type="button"
-                className="text-ink flex items-center gap-[7px] rounded-full border border-[rgba(20,32,26,.16)] px-3 py-[7px] text-[12.5px] font-medium transition-colors hover:border-[var(--color-green)]"
-              >
-                <span className="bg-green size-1.5 rounded-full" />
-                {active.short}
-                <span className="text-stone text-[9px]">▼</span>
-                <span className="sr-only">{t("changeLanguage")}</span>
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="min-w-[172px]">
-              {LOCALES.map((option) => (
-                <DropdownMenuItem
-                  key={option}
-                  onSelect={() => switchLocale(option)}
-                  className={cn(
-                    "flex justify-between gap-3 text-[13px] font-medium",
-                    option === locale ? "text-green" : "text-ink",
-                  )}
-                >
-                  {LOCALE_LABELS[option].name}
-                  <span className="text-stone font-mono text-[10px]">
-                    {LOCALE_LABELS[option].short}
-                  </span>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu> */}
-
           <Button
             asChild
             variant="brand"
             size="pillSm"
             className="max-sm:px-3.75 max-sm:py-2.5 max-sm:text-[12.5px]"
           >
-            <Link href="/contact">{t("requestQuote")}</Link>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+              Chat on WhatsApp
+            </a>
           </Button>
 
           <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
             <SheetTrigger asChild>
               <button
                 type="button"
-                aria-label={t("openMenu")}
+                aria-label="Open menu"
                 className="flex size-[42px] flex-col items-center justify-center gap-1 rounded-[11px] border border-[rgba(20,32,26,.16)] transition-colors hover:border-[var(--color-green)] min-[981px]:hidden"
               >
                 <span className="bg-ink h-[1.6px] w-[17px] rounded-sm" />
@@ -188,7 +132,7 @@ export function SiteHeader() {
             >
               <SheetHeader className="flex-row items-center justify-between border-b border-[rgba(20,32,26,.09)] px-5 py-[18px]">
                 <SheetTitle className="text-green text-[12.5px] font-semibold tracking-[0.16em]">
-                  {t("menu")}
+                  MENU
                 </SheetTitle>
               </SheetHeader>
 
@@ -206,7 +150,7 @@ export function SiteHeader() {
                     return (
                       <SheetClose asChild key={item.href}>
                         <Link href={item.href} className={itemClass(item.href)}>
-                          {t(item.key)}
+                          {item.label}
                         </Link>
                       </SheetClose>
                     );
@@ -222,7 +166,7 @@ export function SiteHeader() {
                           isBranchActive(pathname, item) && "text-green",
                         )}
                       >
-                        {t(item.key)}
+                        {item.label}
                         <span
                           aria-hidden
                           className="text-stone text-[9px] transition-transform group-open:rotate-180"
@@ -240,7 +184,7 @@ export function SiteHeader() {
                                 "py-3 text-[15px]",
                               )}
                             >
-                              {t(child.key)}
+                              {child.label}
                             </Link>
                           </SheetClose>
                         ))}
@@ -251,31 +195,15 @@ export function SiteHeader() {
               </nav>
 
               <div className="mt-auto flex flex-col gap-3 border-t border-[rgba(20,32,26,.09)] px-[18px] pt-4 pb-[22px]">
-                {/* <div>
-                  <div className="text-stone label-mono mb-2 tracking-[0.12em]">
-                    {t("language")}
-                  </div>
-                  <div className="flex flex-wrap gap-[7px]">
-                    {LOCALES.map((option) => (
-                      <button
-                        key={option}
-                        type="button"
-                        onClick={() => switchLocale(option)}
-                        className={cn(
-                          "rounded-full border px-3.5 py-2 text-[13px] font-medium transition-colors",
-                          option === locale
-                            ? "bg-green border-green text-white"
-                            : "text-ink border-[rgba(20,32,26,.18)]",
-                        )}
-                      >
-                        {LOCALE_LABELS[option].name}
-                      </button>
-                    ))}
-                  </div>
-                </div> */}
                 <SheetClose asChild>
                   <Button asChild variant="brand" size="block">
-                    <Link href="/contact">{t("requestQuote")}</Link>
+                    <a
+                      href={WHATSAPP_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Chat on WhatsApp
+                    </a>
                   </Button>
                 </SheetClose>
               </div>

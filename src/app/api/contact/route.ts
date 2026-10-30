@@ -1,10 +1,7 @@
 import { NextResponse } from "next/server";
 import { flattenError } from "zod";
 
-import {
-  INTEREST_LABELS_EN,
-  contactRequestSchema,
-} from "@/lib/contact-schema";
+import { INTEREST_LABELS, contactRequestSchema } from "@/lib/contact-schema";
 import { countryName } from "@/lib/countries";
 import { appendSheetRow } from "@/server/google-sheets";
 import { verifyRecaptcha } from "@/server/recaptcha";
@@ -48,14 +45,13 @@ export async function POST(request: Request) {
   }
 
   try {
-    // The sheet is read by the export desk, so values are written in English.
     await appendSheetRow([
       new Date().toISOString(),
       enquiry.name,
       enquiry.company ?? "",
       enquiry.email,
       countryName(enquiry.country),
-      INTEREST_LABELS_EN[enquiry.interest],
+      INTEREST_LABELS[enquiry.interest],
       enquiry.quantity ?? "",
       enquiry.message,
       enquiry.sendCatalogue ? "Yes" : "No",

@@ -1,18 +1,17 @@
-/** Route + message-key pairs; labels come from the `nav` namespace. */
 export const NAV_ITEMS = [
-  { href: "/", key: "home" },
+  { href: "/", label: "Home" },
   {
     href: "/about",
-    key: "about",
+    label: "About us",
     children: [
-      { href: "/about", key: "background" },
-      { href: "/team", key: "team" },
+      { href: "/about", label: "Background" },
+      { href: "/team", label: "Team" },
     ],
   },
-  { href: "/our-work", key: "ourWork" },
-  { href: "/products", key: "products" },
-  { href: "/contact", key: "contact" },
-  // { href: "/careers", key: "careers" },
+  { href: "/our-work", label: "Our work" },
+  { href: "/products", label: "Products" },
+  { href: "/contact", label: "Contact" },
+  // { href: "/careers", label: "Careers" },
 ] as const;
 
 /**
@@ -26,35 +25,38 @@ export const SOCIAL_LINKS = [
   { label: "X", href: "https://x.com/ndipl" },
 ] as const;
 
-/** Footer columns; headings and labels come from the `footer` namespace. */
+export const WHATSAPP_URL = `https://wa.me/918839559840?text=${encodeURIComponent(
+  "Hi NDIPL, I'd like to request a quote.",
+)}`;
+
 export const FOOTER_COLUMNS = [
   {
-    heading: "company",
+    heading: "COMPANY",
     items: [
-      { key: "about", href: "/about" },
-      { key: "ourWork", href: "/our-work" },
-      { key: "team", href: "/team" },
-      { key: "products", href: "/products" },
-      { key: "careers", href: "/careers" },
+      { label: "About us", href: "/about" },
+      { label: "Our work", href: "/our-work" },
+      { label: "Our team", href: "/team" },
+      { label: "Products", href: "/products" },
+      { label: "Careers", href: "/careers" },
     ],
   },
   {
-    heading: "products",
+    heading: "PRODUCTS",
     items: [
-      { key: "pulses", href: "/products" },
-      { key: "spices", href: "/products" },
-      { key: "grains", href: "/products" },
-      { key: "millets", href: "/products" },
-      { key: "oilSeeds", href: "/products" },
+      { label: "Pulses", href: "/products" },
+      { label: "Spices", href: "/products" },
+      { label: "Grains", href: "/products" },
+      { label: "Millets", href: "/products" },
+      { label: "Oil seeds", href: "/products" },
     ],
   },
   {
-    heading: "contact",
+    heading: "CONTACT",
     items: [
-      { key: "requestQuote", href: "/contact" },
-      { key: "sampleRequest", href: "/contact" },
-      { key: "volunteer", href: "/careers" },
-      { key: "email", href: "mailto:export@ndipl.example" },
+      { label: "Request a quote", href: "/contact" },
+      { label: "Sample request", href: "/contact" },
+      { label: "Volunteer with us", href: "/careers" },
+      { label: "export@ndipl.example", href: "mailto:export@ndipl.example" },
     ],
   },
 ] as const;

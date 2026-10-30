@@ -90,24 +90,52 @@
 }
 
 /*
- * Karla and Instrument Serif have no Devanagari or Arabic glyphs, so those
- * locales swap the underlying font variables and inherit every type rule.
+ * Hero background crossfade. 18s cycle, slides staggered 6s apart in
+ * hero-section.tsx. The incoming slide fades in over 1.5s on top (z-index 2)
+ * while the outgoing one stays opaque underneath, so the page never shows
+ * through mid-fade; it drops out once fully covered.
+ * 8.333% = 1.5s, 41.667% = 7.5s of 18s.
  */
-html[lang="hi"],
-html[lang="mr"] {
-  --font-karla: var(--font-devanagari);
-  --font-instrument-serif: var(--font-devanagari);
+@keyframes hero-fade {
+  0% {
+    opacity: 0;
+    z-index: 2;
+  }
+  8.333% {
+    opacity: 1;
+    z-index: 2;
+  }
+  8.334% {
+    z-index: 1;
+  }
+  41.667% {
+    opacity: 1;
+  }
+  41.668%,
+  100% {
+    opacity: 0;
+    z-index: 1;
+  }
 }
 
-html[lang="ar"] {
-  --font-karla: var(--font-arabic);
-  --font-instrument-serif: var(--font-arabic);
+.hero-slide {
+  animation: hero-fade 18s ease-in-out infinite both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide {
+    animation: none;
+    opacity: 0;
+  }
+  .hero-slide:first-child {
+    opacity: 1;
+  }
 }
 
 /*
  * The floating reCAPTCHA badge is hidden. Google's terms permit this only when
  * the notice and both links are shown instead — the contact form renders them
- * under its submit button (`form.recaptchaNotice`). Do not remove one without
+ * under its submit button. Do not remove one without
  * the other.
  */
 .grecaptcha-badge {

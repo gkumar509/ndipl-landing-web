@@ -1,3 +1,5 @@
+import type { PortableTextBlock } from "next-sanity";
+
 import type { SanityImageValue } from "@/components/common/sanity-image";
 
 /**
@@ -18,6 +20,7 @@ export type Product = {
   _id: string;
   title: string | null;
   spec: string | null;
+  details: PortableTextBlock[] | null;
   image: SanityImageValue | null;
 };
 
@@ -25,23 +28,17 @@ export type CategoryWithProducts = Omit<ProductCategory, "image"> & {
   products: Product[];
 };
 
-export type TeamLeader = {
+export type StatGroup = {
+  _id: string;
+  title: string | null;
+  stats: { _key: string; value: string | null; label: string | null }[] | null;
+};
+
+export type TeamMember = {
   _id: string;
   name: string | null;
   role: string | null;
   bio: string | null;
   tags: string[] | null;
   image: SanityImageValue | null;
-};
-
-export type TeamDepartmentMember = {
-  _id: string;
-  name: string | null;
-  role: string | null;
-  image: SanityImageValue | null;
-};
-
-export type Team = {
-  leadership: TeamLeader[];
-  departments: TeamDepartmentMember[];
 };

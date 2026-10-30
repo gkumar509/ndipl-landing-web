@@ -59,21 +59,18 @@ test("the API contract additionally requires a reCAPTCHA token", () => {
   );
 });
 
-test("every ISO country code resolves to a name in every locale", () => {
+test("every ISO country code resolves to a name", () => {
   assert.equal(COUNTRY_CODES.length, 249);
   assert.equal(new Set(COUNTRY_CODES).size, COUNTRY_CODES.length);
 
-  for (const locale of ["en", "hi", "mr", "ar"]) {
-    const display = new Intl.DisplayNames([locale], { type: "region" });
-    for (const code of COUNTRY_CODES) {
-      const name = display.of(code);
-      assert.ok(name && name !== code, `${locale}: ${code} has no name`);
-    }
+  for (const code of COUNTRY_CODES) {
+    const name = countryName(code);
+    assert.ok(name && name !== code, `${code} has no name`);
   }
 });
 
 test("country options cover every code exactly once, priorities first", () => {
-  const { priority, rest } = countryOptions("en");
+  const { priority, rest } = countryOptions();
   const codes = [...priority, ...rest].map((option) => option.code);
 
   assert.equal(codes.length, COUNTRY_CODES.length);

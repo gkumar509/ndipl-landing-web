@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
 
 import { DisplayHeading, Eyebrow, Section } from "@/components/common/section";
 import { ContactForm } from "@/components/forms/contact-form";
@@ -9,12 +8,26 @@ import {
   type InterestKey,
 } from "@/lib/contact-schema";
 
-type ContactInfo = { label: string; value: string };
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Quotations within one working day. Tell the NDIPL export desk what you need and by when.",
+};
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("contact");
-  return { title: t("title"), description: t("metaDescription") };
-}
+const info = [
+  {
+    label: "EXPORT DESK",
+    value: "vedprakash@naturesdelightind.com · +91 86029 07233"
+  },
+  {
+    label: "OUR HOME",
+    value: "Bhopal, Madhya Pradesh, India"
+  },
+  {
+    label: "HOURS",
+    value: "Mon-Fri, 09:00-18:00 IST"
+  }
+];
 
 /**
  * What the map is centred on. Paste the pin's coordinates ("23.2599,77.4126")
@@ -29,8 +42,6 @@ export default async function ContactPage({
   searchParams,
 }: PageProps<"/contact">) {
   const params = await searchParams;
-  const t = await getTranslations("contact");
-  const form = await getTranslations("form");
 
   // Links from the products, careers and home pages prefill the form.
   const interest = asString(params.interest);
@@ -38,26 +49,24 @@ export default async function ContactPage({
 
   const defaults: Partial<ContactInput> = {
     email: asString(params.email) ?? "",
-    message: subject ? `${form("enquirySubject", { subject })}\n\n` : "",
+    message: subject ? `Enquiry: ${subject}\n\n` : "",
     interest: INTEREST_KEYS.includes(interest as InterestKey)
       ? (interest as InterestKey)
       : "product",
   };
 
-  const info = t.raw("info") as ContactInfo[];
-
   return (
     <Section containerClassName="grid grid-cols-1 lg:grid-cols-2 items-start gap-11 py-[70px]">
       <div>
-        <Eyebrow>{t("eyebrow")}</Eyebrow>
+        <Eyebrow>Contact</Eyebrow>
         <DisplayHeading
           as="h1"
           className="mt-3.5 max-w-[20ch] text-[clamp(36px,4.2vw,52px)] leading-[1.08]"
         >
-          {t("heading")}
+          Tell us what you need and by when
         </DisplayHeading>
         <p className="text-body mt-[18px] mb-[30px] max-w-[44ch] text-base leading-[1.65]">
-          {t("intro")}
+          {"Quotations within one working day. Samples dispatched against courier account for confirmed enquiries."}
         </p>
 
         <dl className="grid gap-4">
@@ -75,7 +84,7 @@ export default async function ContactPage({
         </dl>
 
         <iframe
-          title={t("mapLabel")}
+          title="map embed \u2014 plant & office location"
           src={`https://www.google.com/maps?q=${encodeURIComponent(MAP_QUERY)}&output=embed`}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"

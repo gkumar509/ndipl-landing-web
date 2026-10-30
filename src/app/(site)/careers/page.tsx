@@ -1,37 +1,84 @@
 import type { Metadata } from "next";
-import { useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 
 import { DisplayHeading, Eyebrow, Section } from "@/components/common/section";
 import { Button } from "@/components/ui/button";
 
-type Job = { title: string; meta: string; type: string };
-type Track = { title: string; description: string };
+export const metadata: Metadata = {
+  title: "Careers",
+  description:
+    "Roles across quality, agronomy, plant operations and export documentation at NDIPL, plus a volunteering track for our farm and conservation programmes.",
+};
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("careers");
-  return { title: t("title"), description: t("metaDescription") };
-}
+const filters = [
+  "All departments",
+  "Quality",
+  "Operations",
+  "Agronomy",
+  "Export & sales"
+];
+
+const jobs = [
+  {
+    title: "Quality Assurance Officer",
+    meta: "Quality · Nagpur plant · 2-5 years",
+    type: "Full-time"
+  },
+  {
+    title: "Export Documentation Executive",
+    meta: "Export & sales · Nagpur · 1-3 years",
+    type: "Full-time"
+  },
+  {
+    title: "Procurement Manager — Pulses",
+    meta: "Sourcing · Madhya Pradesh & Maharashtra · 5+ years",
+    type: "Full-time"
+  },
+  {
+    title: "Agronomist — Farmer Outreach",
+    meta: "Agronomy · Field-based · 3+ years",
+    type: "Full-time"
+  },
+  {
+    title: "Plant Operations Supervisor",
+    meta: "Operations · Nagpur plant · Shift role",
+    type: "Full-time"
+  },
+  {
+    title: "Sales Executive — Middle East",
+    meta: "Export & sales · Remote with travel",
+    type: "Contract"
+  }
+];
+
+const tracks = [
+  {
+    title: "Field days",
+    description: "Support farmer training sessions and demo plots."
+  },
+  {
+    title: "Watershed & plantation drives",
+    description: "Weekend programmes in sourcing belts."
+  },
+  {
+    title: "Safe-food awareness",
+    description: "Sessions in schools, mandis and community centres."
+  }
+];
 
 export default function CareersPage() {
-  const t = useTranslations("careers");
-  const filters = t.raw("filters") as string[];
-  const jobs = t.raw("jobs") as Job[];
-  const tracks = t.raw("volunteerTracks") as Track[];
-
   return (
     <>
       <Section containerClassName="pt-[70px]">
-        <Eyebrow>{t("eyebrow")}</Eyebrow>
+        <Eyebrow>Careers</Eyebrow>
         <DisplayHeading
           as="h1"
           className="mt-3.5 max-w-[22ch] text-[clamp(38px,4.6vw,56px)] leading-[1.08]"
         >
-          {t("heading")}
+          Work on food that people can trust
         </DisplayHeading>
         <p className="text-body mt-[18px] max-w-[56ch] text-[16.5px] leading-[1.65]">
-          {t("intro")}
+          {"Roles across quality, agronomy, plant operations and export documentation \u2014 plus a volunteering track for anyone who wants to contribute to our farm and conservation programmes."}
         </p>
       </Section>
 
@@ -69,11 +116,11 @@ export default function CareersPage() {
                       pathname: "/contact",
                       query: {
                         interest: "careers",
-                        subject: t("applySubject", { role: job.title }),
+                        subject: `Application — ${job.title}`,
                       },
                     }}
                   >
-                    {t("apply")}
+                    Apply
                   </Link>
                 </Button>
               </div>
@@ -86,13 +133,13 @@ export default function CareersPage() {
         <div className="bg-sand grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] items-center gap-[30px] rounded-[20px] p-9">
           <div>
             <span className="text-green text-[11.5px] font-medium tracking-[0.14em] uppercase">
-              {t("volunteerEyebrow")}
+              Volunteer
             </span>
             <p className="font-display mt-3 mb-2.5 text-[32px] leading-[1.15]">
-              {t("volunteerHeading")}
+              Give time to soil, water and safe-food programmes
             </p>
             <p className="text-body mb-5 max-w-[46ch] text-[14.5px] leading-[1.65]">
-              {t("volunteerBody")}
+              {"Field days with farmer groups, watershed and plantation drives, food-safety awareness sessions in schools and mandis."}
             </p>
             <Button asChild variant="brand" size="pill">
               <Link
@@ -100,11 +147,11 @@ export default function CareersPage() {
                   pathname: "/contact",
                   query: {
                     interest: "volunteering",
-                    subject: t("volunteerSubject"),
+                    subject: "Volunteering",
                   },
                 }}
               >
-                {t("volunteerCta")}
+                Join as a volunteer
               </Link>
             </Button>
           </div>

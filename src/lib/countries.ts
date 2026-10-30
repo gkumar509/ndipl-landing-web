@@ -1,7 +1,6 @@
 /**
  * ISO 3166-1 alpha-2 codes. Display names come from the platform's
- * `Intl.DisplayNames`, so every country is already translated into each locale
- * the site supports — no country-name dataset to ship or keep current.
+ * `Intl.DisplayNames` — no country-name dataset to ship or keep current.
  */
 export const COUNTRY_CODES = [
   "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR", "AS", "AT",
@@ -35,25 +34,20 @@ const PRIORITY: CountryCode[] = [
 ];
 
 /**
- * Country options sorted alphabetically by their name in `locale`, with the
- * main export markets pinned to the top.
+ * Country options sorted alphabetically by name, with the main export markets
+ * pinned to the top.
  */
-export function countryOptions(locale: string) {
-  const display = new Intl.DisplayNames([locale, "en"], { type: "region" });
-  const label = (code: CountryCode) => display.of(code) ?? code;
-
-  const collator = new Intl.Collator(locale);
+export function countryOptions() {
   const rest = COUNTRY_CODES.filter((code) => !PRIORITY.includes(code))
-    .map((code) => ({ code, label: label(code) }))
-    .sort((a, b) => collator.compare(a.label, b.label));
+    .map((code) => ({ code, label: countryName(code) }))
+    .sort((a, b) => a.label.localeCompare(b.label, "en"));
 
   return {
-    priority: PRIORITY.map((code) => ({ code, label: label(code) })),
+    priority: PRIORITY.map((code) => ({ code, label: countryName(code) })),
     rest,
   };
 }
 
-/** English name, used when writing the enquiry to the shared Google Sheet. */
 export function countryName(code: string) {
   return new Intl.DisplayNames(["en"], { type: "region" }).of(code) ?? code;
 }
