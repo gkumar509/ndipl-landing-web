@@ -90,28 +90,28 @@
 }
 
 /*
- * Hero background crossfade. 18s cycle, slides staggered 6s apart in
+ * Hero background crossfade. 12s cycle, slides staggered 6s apart in
  * hero-section.tsx. The incoming slide fades in over 1.5s on top (z-index 2)
  * while the outgoing one stays opaque underneath, so the page never shows
  * through mid-fade; it drops out once fully covered.
- * 8.333% = 1.5s, 41.667% = 7.5s of 18s.
+ * 12.5% = 1.5s, 62.5% = 7.5s of 12s.
  */
 @keyframes hero-fade {
   0% {
     opacity: 0;
     z-index: 2;
   }
-  8.333% {
+  12.5% {
     opacity: 1;
     z-index: 2;
   }
-  8.334% {
+  12.501% {
     z-index: 1;
   }
-  41.667% {
+  62.5% {
     opacity: 1;
   }
-  41.668%,
+  62.501%,
   100% {
     opacity: 0;
     z-index: 1;
@@ -119,7 +119,7 @@
 }
 
 .hero-slide {
-  animation: hero-fade 18s ease-in-out infinite both;
+  animation: hero-fade 12s ease-in-out infinite both;
 }
 
 @media (prefers-reduced-motion: reduce) {

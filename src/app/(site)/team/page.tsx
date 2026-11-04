@@ -50,13 +50,15 @@ export default async function TeamPage() {
                   <h2 className="font-display text-lg leading-[1.2]">
                     {member.name}
                   </h2>
-                  <p className="text-green mt-1 text-[10.5px] font-medium tracking-[0.08em] uppercase">
-                    {member.role}
-                  </p>
+                  {member.role ? (
+                    <p className="text-green mt-1 text-[10.5px] font-medium tracking-[0.08em] uppercase">
+                      {member.role}
+                    </p>
+                  ) : null}
                   {member.bio ? (
                     <p
                       title={member.bio}
-                      className="text-body mt-2 mb-2.5 line-clamp-3 text-[12.5px] leading-[1.55]"
+                      className="text-body mt-2 mb-2.5 line-clamp-5 text-[12.5px] leading-[1.55]"
                     >
                       {member.bio}
                     </p>

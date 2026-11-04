@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -106,10 +107,17 @@ export function SiteHeader() {
             asChild
             variant="brand"
             size="pillSm"
-            className="max-sm:px-3.75 max-sm:py-2.5 max-sm:text-[12.5px]"
+            className="gap-2 max-sm:px-3.75 max-sm:py-2.5 max-sm:text-[12.5px]"
           >
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-              Chat on WhatsApp
+              <Image
+                src="/whatsapp-logo.png"
+                alt=""
+                width={18}
+                height={18}
+                className="size-4.5"
+              />
+              WhatsApp
             </a>
           </Button>
 

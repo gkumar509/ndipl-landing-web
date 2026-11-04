@@ -20,7 +20,6 @@ export const teamMember = defineType({
       name: "role",
       title: "Role",
       type: "string",
-      validation: (rule) => rule.required(),
     }),
     imageField({ title: "Portrait" }),
     defineField({

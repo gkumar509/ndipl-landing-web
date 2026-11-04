@@ -21,13 +21,18 @@ export function SiteFooter() {
         <div>
           <div className="flex items-center gap-[11px]">
             <BrandMark size={32} />
-            <span className="text-on-ink text-[13px] font-semibold tracking-[0.16em]">
+            <span className="flex flex-col">
+              <span className="text-on-ink text-[13px] font-semibold tracking-[0.16em]">
               NDIPL
+            </span>
+             <span className="text-on-ink text-[9px] tracking-[0.16em]">
+              Natures Delight Industries Pvt Ltd
+            </span>
             </span>
           </div>
           <p className="mt-4 max-w-[30ch] text-[13.5px] leading-[1.7]">
-            Natures Delight Industries Private Limited - promoting safe food,
-            sustainable farming and soil &amp; water conservation.
+            Natures Delight Industries Pvt Ltd promots safe food,
+            sustainable farming and global standards.
           </p>
 
           <ul className="mt-5 flex flex-wrap gap-2.5">

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { DisplayHeading, Section } from "@/components/common/section";
 
 const stages = [
@@ -40,13 +42,18 @@ export function ProcessSection() {
 
       <ol className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-px overflow-hidden rounded-[14px] border border-[rgba(245,242,234,.14)] bg-[rgba(245,242,234,.14)]">
         {stages.map((stage) => (
-          <li key={stage.title} className="bg-ink px-5 pt-6 pb-7">
-            <h3 className="font-display mt-3.5 mb-2 text-[21px] leading-[1.2]">
-              {stage.title}
-            </h3>
-            <p className="text-[13px] leading-[1.55] text-[rgba(245,242,234,.62)]">
-              {stage.description}
-            </p>
+          <li key={stage.title} className="bg-ink">
+            <Link
+              href="/our-work"
+              className="block h-full px-5 pt-6 pb-7 transition-colors hover:bg-[rgba(245,242,234,.05)]"
+            >
+              <h3 className="font-display mt-3.5 mb-2 text-[21px] leading-[1.2]">
+                {stage.title}
+              </h3>
+              <p className="text-[13px] leading-[1.55] text-[rgba(245,242,234,.62)]">
+                {stage.description}
+              </p>
+            </Link>
           </li>
         ))}
       </ol>

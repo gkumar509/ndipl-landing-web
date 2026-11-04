@@ -19,7 +19,10 @@ const groups: { label: string; logos: Logo[] }[] = [
     logos: [
       { name: "ITC", logo: "/itc-logo.png" },
       { name: "LTFOODS", logo: "/ltfoods-logo.svg" },
-      { name: "BESTSELLER", logo: "/bestseller-logo.png" },
+      { name: "BIGBASKET", logo: "/big-basket-logo.png" },
+      { name: "FORTUNERICE", logo: "/fortune-rice-logo.jpg" },
+      { name: "OKFOODS", logo: "/ok-foods-logo.jpg" },
+      { name: "PRAGATIFOODS", logo: "/pragati-foods-logo.webp" },
     ],
   },
 ];
@@ -41,7 +44,7 @@ export function TrustSection() {
             <h2 className="font-display text-ink border-green border-s-[3px] ps-3.5 text-[26px] leading-[1.1] md:text-[30px]">
               {group.label}
             </h2>
-            <ul className="flex flex-wrap items-center gap-x-10 gap-y-5">
+            <ul className="flex flex-wrap items-center justify-evenly gap-x-8 gap-y-6">
               {group.logos.map((item) => (
                 <li key={item.name}>
                   <Image
@@ -49,7 +52,7 @@ export function TrustSection() {
                     alt={item.name}
                     width={280}
                     height={140}
-                    className="h-11 w-auto mix-blend-multiply"
+                    className="h-12 w-auto mix-blend-multiply md:h-16"
                   />
                 </li>
               ))}

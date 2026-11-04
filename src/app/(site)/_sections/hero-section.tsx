@@ -16,15 +16,15 @@ const pillars = [
     logo: "/sustainable_farming_logo.png",
   },
   {
-    title: "Soil & water conservation",
-    short: "Watershed, rotation and irrigation programmes.",
-    logo: "/soil_water_conservation_logo.png",
+    title: "Global Standards",
+    short: "FSSAI, NPOP & USDA NOP certified, export-ready.",
+    logo: "/global_standards_logo.png",
   },
 ];
 
-const heroImages = ["/hero_1.jpg", "/hero_2.jpg", "/hero_3.jpg"];
+const heroImages = ["/hero_1.jpg", "/hero_3.jpg"];
 
-// Must match `.hero-slide` in globals.css: 3 slides × 6s = 18s cycle, 1.5s fade.
+// Must match `.hero-slide` in globals.css: 2 slides × 6s = 12s cycle, 1.5s fade.
 const HERO_SLIDE_SECONDS = 6;
 const HERO_FADE_SECONDS = 1.5;
 
@@ -56,11 +56,11 @@ export function HeroSection() {
       <Container className="flex flex-1 items-center py-[64px] md:py-[80px]">
         <div className="max-w-[640px] md:text-on-ink md:[text-shadow:0_1px_16px_rgba(20,32,26,.7)]">
           <div className="text-green inline-flex w-fit items-center gap-2 rounded-full border border-[rgba(10,107,61,.22)] px-[13px] py-1.5 text-[11.5px] font-medium tracking-[0.06em] uppercase md:border-[rgba(245,242,234,.34)] md:text-inherit">
-            Safe Food · Sustainable Farming · Soil & Water conservation
+            Safe Food · Sustainable Farming · Global Standards
           </div>
 
           <h1 className="font-display mt-[22px] text-[clamp(40px,5vw,66px)] leading-[1.06] text-pretty">
-            Premium agro products, sourced and processed with a conscience.
+            Premium agro products, sourced and processed with a conscience
           </h1>
           <p className="text-body mt-5 max-w-[47ch] text-[17.5px] leading-[1.65] text-pretty md:text-[rgba(245,242,234,.92)]">
             Sourced from selected Indian farming belts, then cleaned, graded,
