@@ -56,7 +56,7 @@ export const FOOTER_COLUMNS = [
       { label: "Request a quote", href: "/contact" },
       { label: "Sample request", href: "/contact" },
       { label: "Volunteer with us", href: "/careers" },
-      { label: "inquiry@natuersdelightind.com", href: "mailto:inquiry@natuersdelightind.com" },
+      { label: "inquiry@naturesdelightind.com", href: "mailto:inquiry@naturesdelightind.com" },
     ],
   },
 ] as const;

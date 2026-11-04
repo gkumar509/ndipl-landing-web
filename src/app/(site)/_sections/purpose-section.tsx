@@ -1,7 +1,6 @@
-import Image from "next/image";
 import { Suspense } from "react";
 
-import { DisplayHeading, Eyebrow, Section } from "@/components/common/section";
+import { DisplayHeading, Section } from "@/components/common/section";
 import type { StatGroup } from "@/sanity/content-types";
 import { sanityFetch } from "@/sanity/lib/live";
 import { STAT_GROUPS_QUERY } from "@/sanity/queries";
@@ -80,42 +79,6 @@ function StatRowsSkeleton() {
   );
 }
 
-type Logo = { name: string; logo: string };
-
-const certs: Logo[] = [
-  {
-    name: "FSSAI",
-    logo: "/fssai-logo.png",
-  },
-  {
-    name: "NPOP",
-    logo: "/npop-logo.jpeg",
-  },
-  {
-    name: "NOP(USDA)",
-    logo: "/nop-logo.png",
-  },
-  {
-    name: "REGEN",
-    logo: "/regen-logo.png",
-  },
-];
-
-const bps: Logo[] = [
-  {
-    name: "ITC",
-    logo: "/itc-logo.png",
-  },
-  {
-    name: "LTFOODS",
-    logo: "/ltfoods-logo.svg",
-  },
-  {
-    name: "BESTSELLER",
-    logo: "/bestseller-logo.png",
-  },
-];
-
 export function PurposeSection() {
   return (
     <Section
@@ -137,42 +100,6 @@ export function PurposeSection() {
       <Suspense fallback={<StatRowsSkeleton />}>
         <StatRows />
       </Suspense>
-
-      <div className="flex flex-wrap justify-between items-center pt-7">
-        <div className="flex flex-col items-center gap-y-5">
-          <Eyebrow>Certified</Eyebrow>
-          <ul className="grid grow grid-cols-2 items-center gap-x-8 gap-y-5 sm:flex sm:justify-end">
-            {certs.map((cert) => (
-              <li key={cert.name}>
-                <Image
-                  src={cert.logo}
-                  alt={cert.name}
-                  width={280}
-                  height={140}
-                  className="h-11 w-auto mix-blend-multiply"
-                />
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="flex flex-col items-center gap-y-5">
-          <Eyebrow>Business Partners</Eyebrow>
-          <ul className="grid grow grid-cols-2 items-center gap-x-8 gap-y-5 sm:flex sm:justify-end">
-            {bps.map((bp) => (
-              <li key={bp.name}>
-                <Image
-                  src={bp.logo}
-                  alt={bp.name}
-                  width={280}
-                  height={140}
-                  className="h-11 w-auto mix-blend-multiply"
-                />
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
     </Section>
   );
 }

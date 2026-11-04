@@ -91,25 +91,30 @@ export function HeroSection() {
           {pillars.map((pillar) => (
             <li
               key={pillar.title}
-              className="bg-cream flex items-center gap-2 w-[76vw] shrink-0 snap-start rounded-2xl border border-[rgba(20,32,26,.08)] p-[18px] shadow-[0_18px_40px_-24px_rgba(20,32,26,.45)] sm:w-[330px] md:w-auto md:p-5"
+              className="w-[76vw] shrink-0 snap-start sm:w-[330px] md:w-auto"
             >
-              {/* The PNG has a white ground; multiply blends it into the card,
-                  which is why the card stays opaque rather than glass. */}
-              <Image
-                src={pillar.logo}
-                alt=""
-                width={1408}
-                height={768}
-                className="h-[38px] w-auto mix-blend-multiply"
-              />
-              <div>
-                <h2 className="font-display mt-3 text-[19px] leading-[1.2]">
-                  {pillar.title}
-                </h2>
-                <p className="text-body mt-1.5 text-[13.5px] leading-[1.55]">
-                  {pillar.short}
-                </p>
-              </div>
+              <Link
+                href="/about"
+                className="bg-cream flex h-full cursor-pointer items-center gap-2 rounded-2xl border border-[rgba(20,32,26,.08)] p-[18px] shadow-[0_18px_40px_-24px_rgba(20,32,26,.45)] transition-colors hover:border-[rgba(10,107,61,.35)] md:p-5"
+              >
+                {/* The PNG has a white ground; multiply blends it into the card,
+                    which is why the card stays opaque rather than glass. */}
+                <Image
+                  src={pillar.logo}
+                  alt=""
+                  width={1408}
+                  height={768}
+                  className="h-[38px] w-auto mix-blend-multiply"
+                />
+                <div>
+                  <h2 className="font-display mt-3 text-[19px] leading-[1.2]">
+                    {pillar.title}
+                  </h2>
+                  <p className="text-body mt-1.5 text-[13.5px] leading-[1.55]">
+                    {pillar.short}
+                  </p>
+                </div>
+              </Link>
             </li>
           ))}
         </ul>

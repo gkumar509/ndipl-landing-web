@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Eyebrow, Section } from "@/components/common/section";
+import { DisplayHeading, Section } from "@/components/common/section";
 import { Button } from "@/components/ui/button";
 
 /**
@@ -10,13 +10,11 @@ import { Button } from "@/components/ui/button";
 export function JoinSection() {
   return (
     <Section
-      className="bg-sand border-t border-[rgba(20,32,26,.07)]"
+      className="border-t border-[rgba(20,32,26,.07)]"
       containerClassName="grid grid-cols-1 items-stretch gap-10 py-[70px] md:grid-cols-2"
     >
-      {/* `Eyebrow` is a span, so it needs block + col-span-full to sit on its
-          own row above both cards. */}
-      <Eyebrow className="col-span-full -mb-4 block">Work with us</Eyebrow>
-      <div className="bg-cream flex flex-col items-start rounded-[18px] border border-[rgba(20,32,26,.09)] p-7">
+      <DisplayHeading className="col-span-full -mb-4">Work with us</DisplayHeading>
+      <div className="flex flex-col bg-white items-start rounded-[18px] border border-[rgba(20,32,26,.09)] p-7">
         <span className="text-green text-[11.5px] font-medium tracking-[0.14em] uppercase">
           Volunteer
         </span>
@@ -42,7 +40,7 @@ export function JoinSection() {
         </Button>
       </div>
 
-      <div className="bg-cream flex flex-col items-start rounded-[18px] border border-[rgba(20,32,26,.09)] p-7">
+      <div className="flex flex-col bg-white items-start rounded-[18px] border border-[rgba(20,32,26,.09)] p-7">
         <span className="text-green text-[11.5px] font-medium tracking-[0.14em] uppercase">
           Careers
         </span>
